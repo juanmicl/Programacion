@@ -68,20 +68,22 @@ public class CLJPre02 {
                     case 3:
                         //Calcular cuantos días tiene un mes
                         int mes;
+                        int dias;
                         Scanner teclado3 = new Scanner(System.in);
-                        System.out.println("Introduzca un numero: ");
+                        System.out.println("Introduzca un mes (en formato numérico): ");
                         
                         mes = teclado3.nextInt();
- 
+                        
+                        //no hago switch porque hay mas lineas de codigo (y creo que así está mejor aunque el netbeans ponga un warning)
                         if(mes == 2){
-                            int dias = 28;
+                            dias = 28;
                         } else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
-                            int dias = 30;
+                            dias = 30;
                         } else {
-                            int dias = 31;
+                            dias = 31;
                         }
                         
-                        System.out.println("El mes "+mes+" tiene"+dias+" días!");
+                        System.out.println("El mes "+mes+" tiene "+dias+" días!");
                         
                         break;
                     case 4:
