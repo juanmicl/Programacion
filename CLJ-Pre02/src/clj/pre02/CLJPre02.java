@@ -23,16 +23,18 @@ public class CLJPre02 {
         int opcion; //Declaramos la variable de la opción del usuario
  
         while (!salir) {
- 
+            
+            System.out.println("========== MENU ==========");
             System.out.println("1. Calcular mayoría de edad");
             System.out.println("2. Calcular número par o inpar");
             System.out.println("3. Cuantos días tiene un mes");
             System.out.println("4. Calcular el factorial de un número");
             System.out.println("0. Salir");
+            System.out.println("==========================");
  
             try {
  
-                System.out.println("Escribe una de las opciones");
+                System.out.println("Introduce una de las opciones:");
                 opcion = sn.nextInt();
  
                 switch (opcion) {
@@ -42,9 +44,9 @@ public class CLJPre02 {
                     case 1:
                         // Calcular si es mayor de edad
                         int edad;
-                        Scanner teclado = new Scanner(System.in);
-                        System.out.print("Introduzca su edad: ");
-                        edad = Integer.parseInt(teclado.nextLine());
+                        Scanner teclado1 = new Scanner(System.in);
+                        System.out.println("Introduzca su edad: ");
+                        edad = teclado1.nextInt();
 
                         if(edad>=18){
                             System.out.println("Eres mayor de edad!");
@@ -53,10 +55,34 @@ public class CLJPre02 {
                         }
                         break;
                     case 2:
-                        System.out.println("Has seleccionado la opcion 2");
+                        //Calcular si un numero es par o impar
+                        Scanner teclado2 = new Scanner(System.in);
+                        System.out.println("Introduzca un numero: ");
+                        int numero2 = teclado2.nextInt();
+                        if(numero2%2==0){
+                             System.out.println(numero2+" es PAR");
+                        }else{
+                            System.out.println(numero2+" es IMPAR");
+                        }
                         break;
                     case 3:
-                        System.out.println("Has seleccionado la opcion 3");
+                        //Calcular cuantos días tiene un mes
+                        int mes;
+                        Scanner teclado3 = new Scanner(System.in);
+                        System.out.println("Introduzca un numero: ");
+                        
+                        mes = teclado3.nextInt();
+ 
+                        if(mes == 2){
+                            int dias = 28;
+                        } else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+                            int dias = 30;
+                        } else {
+                            int dias = 31;
+                        }
+                        
+                        System.out.println("El mes "+mes+" tiene"+dias+" días!");
+                        
                         break;
                     case 4:
                         salir = true;
