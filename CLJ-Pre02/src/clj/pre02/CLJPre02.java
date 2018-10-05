@@ -88,7 +88,7 @@ public class CLJPre02 {
                         
                         break;
                     case 4:
-                        //Calcular si un numero es par o impar
+                        //Calcular factorial
                         long factorial = 1;
                         Scanner teclado4 = new Scanner(System.in);
                         System.out.println("Introduzca un numero: ");
