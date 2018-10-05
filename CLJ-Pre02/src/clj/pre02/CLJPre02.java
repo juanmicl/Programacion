@@ -89,7 +89,7 @@ public class CLJPre02 {
                         break;
                     case 4:
                         //Calcular factorial
-                        long factorial = 1;
+                        long factorial = 1; //long porque si no en cifras grandes no cabe con int
                         Scanner teclado4 = new Scanner(System.in);
                         System.out.println("Introduzca un numero: ");
                         int num = teclado4.nextInt();
