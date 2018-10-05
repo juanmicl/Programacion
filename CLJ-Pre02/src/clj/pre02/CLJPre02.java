@@ -74,7 +74,8 @@ public class CLJPre02 {
                         
                         mes = teclado3.nextInt();
                         
-                        //no hago switch porque hay mas lineas de codigo (y creo que así está mejor aunque el netbeans ponga un warning)
+                        //no hago switch porque hay mas lineas de codigo
+                        //(y creo que así está mejor aunque el netbeans ponga un warning)
                         if(mes == 2){
                             dias = 28;
                         } else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
@@ -87,7 +88,15 @@ public class CLJPre02 {
                         
                         break;
                     case 4:
-                        salir = true;
+                        //Calcular si un numero es par o impar
+                        long factorial = 1;
+                        Scanner teclado4 = new Scanner(System.in);
+                        System.out.println("Introduzca un numero: ");
+                        int num = teclado4.nextInt();
+                        for(int i = num; i > 0; i--){
+                            factorial = factorial * i;
+                        }
+                        System.out.println("El factorial es "+factorial);
                         break;
                     default:
                         System.out.println("Solo números entre 0 y 4");
