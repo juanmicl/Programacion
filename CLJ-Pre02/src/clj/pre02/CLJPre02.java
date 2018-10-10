@@ -76,13 +76,29 @@ public class CLJPre02 {
                         
                         //no hago switch porque hay mas lineas de codigo
                         //(y creo que así está mejor aunque el netbeans ponga un warning)
-                        if(mes == 2){
-                            dias = 28;
-                        } else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
-                            dias = 30;
-                        } else {
-                            dias = 31;
-                        }
+                        switch (mes){
+                            case 2:
+                                dias = 28;
+                                break;
+                            case 1:
+                            case 3:
+                            case 5:
+                            case 7:
+                            case 8:
+                            case 10:
+                            case 12:
+                                dias = 31;
+                                break;
+                            case 4:
+                            case 6:
+                            case 9:
+                            case 11:
+                                dias = 30;
+                                break;
+                            default:
+                                dias = 0;
+                                break;
+                        }     
                         
                         System.out.println("El mes "+mes+" tiene "+dias+" días!");
                         
