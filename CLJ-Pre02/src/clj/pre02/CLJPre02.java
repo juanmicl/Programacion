@@ -74,8 +74,6 @@ public class CLJPre02 {
                         
                         mes = teclado3.nextInt();
                         
-                        //no hago switch porque hay mas lineas de codigo
-                        //(y creo que así está mejor aunque el netbeans ponga un warning)
                         switch (mes){
                             case 2:
                                 dias = 28;
