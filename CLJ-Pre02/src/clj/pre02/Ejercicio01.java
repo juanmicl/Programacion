@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author juanmi
  */
-public class E1 {
+public class Ejercicio01 {
     public static void main(String[] args) {
         // Calcular si es mayor de edad
         int edad;

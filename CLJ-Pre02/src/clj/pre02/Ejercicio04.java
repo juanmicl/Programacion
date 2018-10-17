@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author juanmi
  */
-public class E5 {
+public class Ejercicio04 {
     public static void main(String[] args) {
         //Calcular factorial
         long factorial = 1; //long porque si no en cifras grandes no cabe con int

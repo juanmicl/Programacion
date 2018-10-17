@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author juanmi
  */
-public class E3 {
+public class Ejercicio02 {
     public static void main(String[] args) {
         //Calcular si un numero es par o impar
         Scanner teclado2 = new Scanner(System.in);

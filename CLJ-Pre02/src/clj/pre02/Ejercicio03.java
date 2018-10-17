@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author juanmi
  */
-public class E4 {
+public class Ejercicio03 {
     public static void main(String[] args) {
         //Calcular cuantos días tiene un mes
         int mes;
