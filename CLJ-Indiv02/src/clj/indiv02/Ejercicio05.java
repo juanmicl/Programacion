@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Juanmi
  */
 public class Ejercicio05 {
-    // Realizar distintas funciones en función de las cifras introducidas
+    // Crear un menú :)
     public static void main(String[] args) {
         // Declaramos variables
         int opcion;
