@@ -6,7 +6,7 @@
 package clj.indiv03;
 
 /**
- *
+ * Hace cosas.
  * @author 0101001011
  */
 public class Usuario {
@@ -14,12 +14,37 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private int edad;
-    private int dni;
+    private String dni;
+    public static int n = 0;
+
     /**
-     * @param args the command line arguments
+     *  CONSTRUCTOR
+     * @param nombre
+     * @param apellidos
+     * @param edad
+     * @param dni
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Usuario(String nombre, String apellidos, int edad, String dni) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.dni = dni;
+    }
+    
+    @Override
+    public String toString(){
+        this.n++;
+        return "Usuario "+nombre+" "+apellidos+" edad: "+edad+" dni: "+dni;
+        
+    }
+    
+    // esto es un metodo
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public void setNombre(String nombre){
+        nombre = this.nombre;
     }
     
 }
