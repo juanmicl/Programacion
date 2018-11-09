@@ -6,7 +6,7 @@
 package clj.indiv03;
 
 /**
- *
+ * Clase Producto, nos permite crear productos, modificar su contenido y verlo .
  * @author 0101001011
  */
 public class Producto {
@@ -52,7 +52,7 @@ public class Producto {
     // Método toString
 
     /**
-     *
+     * Método: Los string que tengan este formato.
      * @return
      */
     @Override

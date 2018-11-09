@@ -6,7 +6,7 @@
 package clj.indiv03;
 
 /**
- * Hace cosas.
+ * Clase Usuario, nos permite crear usuarios, modificar su contenido y verlo.
  * @author 0101001011
  */
 public class Usuario {
