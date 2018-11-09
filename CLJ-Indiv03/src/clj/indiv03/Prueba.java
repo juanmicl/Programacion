@@ -5,7 +5,7 @@
  */
 package clj.indiv03;
 import java.util.Scanner;
-import java.util.Random;
+//import java.util.Random;
 /**
  *
  * @author 0101001011
@@ -26,26 +26,26 @@ public class Prueba {
         switch(opcion){
             case 1:
                 //int rand = (int )(Math.random() * 999999 + 1);
-                Usuario rand = new Usuario("", "", 0, "");
+                Usuario a = new Usuario("", "", 0, "");
                 System.out.println("Insertar Nombre: ");
-                rand.setNombre(sc.next());
+                a.setNombre(sc.next());
                 System.out.println("Insertar Apellidos: ");
-                rand.setApellidos(sc.next());
+                a.setApellidos(sc.next());
                 System.out.println("Insertar Edad: ");
-                rand.setEdad(sc.nextInt());
+                a.setEdad(sc.nextInt());
                 System.out.println("Insertar DNI: ");
-                rand.setDni(sc.next());
-                System.out.println(rand);
+                a.setDni(sc.next());
+                System.out.println(a);
                 break;
             case 2:
-                Producto produsto = new Producto(0, "", 0);
+                Producto b = new Producto(0, "", 0);
                 System.out.println("Insertar Referencia: ");
-                produsto.setReferencia(sc.nextInt());
+                b.setReferencia(sc.nextInt());
                 System.out.println("Insertar Nombre: ");
-                produsto.setNombre(sc.next());
+                b.setNombre(sc.next());
                 System.out.println("Insertar Unidades: ");
-                produsto.setUnidades(sc.nextInt());
-                System.out.println(produsto);
+                b.setUnidades(sc.nextInt());
+                System.out.println(b);
                 break;  
         }
     }
