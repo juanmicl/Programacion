@@ -5,6 +5,7 @@
  */
 package clj.indiv03;
 import java.util.Scanner;
+import java.util.Random;
 /**
  *
  * @author 0101001011
@@ -24,21 +25,28 @@ public class Prueba {
         opcion = sc.nextInt();
         switch(opcion){
             case 1:
-                //blabla
+                //int rand = (int )(Math.random() * 999999 + 1);
+                Usuario rand = new Usuario("", "", 0, "");
+                System.out.println("Insertar Nombre: ");
+                rand.setNombre(sc.next());
+                System.out.println("Insertar Apellidos: ");
+                rand.setApellidos(sc.next());
+                System.out.println("Insertar Edad: ");
+                rand.setEdad(sc.nextInt());
+                System.out.println("Insertar DNI: ");
+                rand.setDni(sc.next());
+                System.out.println(rand);
                 break;
             case 2:
-                //blabla
-                break;
-            
+                Producto produsto = new Producto(0, "", 0);
+                System.out.println("Insertar Referencia: ");
+                produsto.setReferencia(sc.nextInt());
+                System.out.println("Insertar Nombre: ");
+                produsto.setNombre(sc.next());
+                System.out.println("Insertar Unidades: ");
+                produsto.setUnidades(sc.nextInt());
+                System.out.println(produsto);
+                break;  
         }
-                
-        
-        
-        Usuario pepe = new Usuario("Pepe", "Lopez", 20, "77777777N");
-        Producto impresora = new Producto(1314, "Impresora HP-360", 25);
-        pepe.getNombre();
-        System.out.println(pepe.getNombre());
-        System.out.println(impresora);
-        
     }
 }

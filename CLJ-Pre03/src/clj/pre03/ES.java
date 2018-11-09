@@ -31,7 +31,7 @@ public class ES {
         return sc.nextDouble();
     }
     public String leerCadena(){
-        return sc.nextLine();
+        return sc.next();
     }
     public Character leerCaracter(){
         return sc.next().charAt(0);
