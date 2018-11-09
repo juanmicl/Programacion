@@ -18,7 +18,9 @@ public class Prueba {
         System.out.println("======== MENU ========");
         System.out.println(
                 "1. Insertar Usuario\n"
-                + "2. Insertar Producto\n");
+                + "2. Insertar Producto\n"
+                + "3. Modificar Usuario\n"
+                + "4. Modificar Producto");
         opcion = sc.nextInt();
         switch(opcion){
             case 1:
