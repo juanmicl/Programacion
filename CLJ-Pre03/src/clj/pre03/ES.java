@@ -24,7 +24,29 @@ public class ES {
     public long leerEnteroLargo(){
         return sc.nextLong();
     }
+    public float leerReal(){
+        return sc.nextFloat();
+    }
+    public double leerRealLArgo(){
+        return sc.nextDouble();
+    }
+    public String leerCadena(){
+        return sc.nextLine();
+    }
+    public Character leerCaracter(){
+        return sc.next().charAt(0);
+    }
+    public Boolean leerBooleano(){
+        return sc.nextBoolean();
+    }
     
+    // Métodos Salida Print, los paso a String porque como no vamos a trabajar con ellos no importa
+    public void escribir(String a){
+        System.out.print(a);
+    }
+    public void escribirLn(String a){
+        System.out.println(a);
+    }
     
     public static void main(String[] args) {
     
