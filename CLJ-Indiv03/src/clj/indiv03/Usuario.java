@@ -15,7 +15,6 @@ public class Usuario {
     private String apellidos;
     private int edad;
     private String dni;
-    public static int n = 0;
 
     /**
      *  CONSTRUCTOR
@@ -31,20 +30,40 @@ public class Usuario {
         this.dni = dni;
     }
     
-    @Override
-    public String toString(){
-        this.n++;
-        return "Usuario "+nombre+" "+apellidos+" edad: "+edad+" dni: "+dni;
-        
-    }
-    
-    // esto es un metodo
+    // Métodos get
     public String getNombre(){
         return nombre;
     }
-    
-    public void setNombre(String nombre){
-        nombre = this.nombre;
+    public String getApellidos(){
+        return apellidos;
+    }
+    public int getEdad(){
+        return edad;
+    }
+    public String getDni(){
+        return dni;
     }
     
+    // Métodos set
+    public void setNombre(String a){
+        a = this.nombre;
+    }
+    public void setApellidos(String a){
+        a = this.apellidos;
+    }
+    public void setEdad(int a){
+        a = this.edad;
+    }
+    public void setDni(String a){
+        a = this.dni;
+    }
+    
+    /**
+     * Método: Los string que tengan este formato.
+     * @return
+     */
+    @Override
+    public String toString(){
+        return "Usuario: "+nombre+" "+apellidos+" | Edad: "+edad+" | DNI: "+dni;
+    }  
 }
