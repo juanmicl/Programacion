@@ -4,22 +4,39 @@
  * and open the template in the editor.
  */
 package clj.indiv03;
-
+import java.util.Scanner;
 /**
  *
  * @author 0101001011
  */
 public class Prueba {
     public static void main(String[] args) {
-        // TODO code application logic here
-        try {
-            Usuario pepe = new Usuario("Pepe", "Lopez", 20, "77777777N");
-            Producto impresora = new Producto(1314, "Impresora HP-360", 25);
+        // Declaramos variables
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+        
+        System.out.println("======== MENU ========");
+        System.out.println(
+                "1. Insertar Usuario\n"
+                + "2. Insertar Producto\n");
+        opcion = sc.nextInt();
+        switch(opcion){
+            case 1:
+                //blabla
+                break;
+            case 2:
+                //blabla
+                break;
             
-            System.out.println(pepe);
-            System.out.println(impresora);
-        } catch(Exception e){
-            System.out.println(e);
         }
+                
+        
+        
+        Usuario pepe = new Usuario("Pepe", "Lopez", 20, "77777777N");
+        Producto impresora = new Producto(1314, "Impresora HP-360", 25);
+        pepe.getNombre();
+        System.out.println(pepe.getNombre());
+        System.out.println(impresora);
+        
     }
 }
