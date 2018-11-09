@@ -48,9 +48,11 @@ public class ES {
         System.out.println(a);
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
     
         ES sc = new ES();
         System.out.println(sc.leerEntero());
-    }
+    } 
+    // Ignorar esto de aquí.
+    */ 
 }
