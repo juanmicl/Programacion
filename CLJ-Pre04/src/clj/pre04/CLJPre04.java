@@ -18,26 +18,28 @@ public class CLJPre04 {
         // TODO code application logic here
         String s = "abdacbb";
         int validos = 0;
-        int v = 0;
+        String subcadena = "";
         // Convertimos String a array
         char[] cadenaArray = s.toCharArray();
         
         for(int i = 0; i < s.length()-3; i++){
-            for(int e=1; e < 4; e++){
-                if(cadenaArray[i] == cadenaArray[i+e]){
-                    System.out.println("-> "+cadenaArray[i]+" = "+cadenaArray[i+e]);
-                    v++;
-                }else{
-                    System.out.println("-> "+cadenaArray[i]+" != "+cadenaArray[i+e]);
+            for(int e=1; e < 2; e++){
+                subcadena = "";
+                subcadena += cadenaArray[i];
+                subcadena += cadenaArray[i+e];
+                subcadena += cadenaArray[i+e+1];
+                subcadena += cadenaArray[i+e+2];
+                if (subcadena.matches("abcd|abdc|acbd|acdb|adbc|adcb|")){
+                    validos++;
+                } else if (subcadena.matches("bacd|badc|bcad|bcda|bdac|bdca")) {
+                    validos++;
+                } else if (subcadena.matches("cabd|cadb|cbad|cbda|cdab|cdba")){
+                    validos++;
+                } else if (subcadena.matches("dabc|dacb|dbac|dbca|dcab|dcba")){
+                    validos++;
                 }
-                //System.out.println("1");
             }
-            System.out.println("-----");
-            if(v==0){
-                validos++;
-            }else{
-                v = 0;
-            }
+            //System.out.println(subcadena);
         }
         System.out.println(validos);
     }
