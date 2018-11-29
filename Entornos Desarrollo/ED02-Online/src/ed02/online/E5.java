@@ -18,7 +18,8 @@ public class E5 {
         // TODO code application logic here
         int n1;
         int n2;
-        int n3;
+        int aprobados = 0;
+        int suspensos = 0;
         Scanner teclado1 = new Scanner(System.in);
         
         System.out.println("Introduce nota: ");
@@ -34,7 +35,21 @@ public class E5 {
             System.out.println("La nota mas alta es: "+n1);
         }
         
+        if (n1 < 5) {
+            suspensos++;
+        } else {
+            aprobados++;
+        }
+        
+        if (n2 < 5) {
+            suspensos++;
+        } else {
+            aprobados++;
+        }
+        
         System.out.println("El promedio es: "+((n1+n2)/2));
+        System.out.println("Aprobados: "+aprobados);
+        System.out.println("Suspensos: "+suspensos);
     }
     
 }
