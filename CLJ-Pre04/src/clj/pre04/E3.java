@@ -9,7 +9,7 @@ package clj.pre04;
  *
  * @author juanmi
  */
-public class CLJPre04 {
+public class E3 {
 
     /**
      * @param args the command line arguments
