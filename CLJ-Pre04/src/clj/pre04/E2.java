@@ -36,5 +36,4 @@ public class E2 {
             System.out.println("Posición "+i+" | número "+numeros[i]+" | "+tipo);
         }
     }
-    
 }
