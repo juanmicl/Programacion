@@ -18,6 +18,12 @@ public class ES {
     }
     
     // Métodos de entrada por teclado
+
+    /**
+     *
+     * @param text
+     * @return
+     */
     public int leerEntero(String text){
         int numero;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -32,6 +38,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public long leerEnteroLargo(String text){
         long numero;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -46,6 +58,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public float leerReal(String text){
         float numero;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -60,6 +78,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public double leerRealLArgo(String text){
         double numero;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -74,6 +98,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public String leerCadena(String text){
         String cadena;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -88,6 +118,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public Character leerCaracter(String text){
         char caracter;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -102,6 +138,12 @@ public class ES {
             }
         }
     }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
     public Boolean leerBooleano(String text){
         boolean boleano;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
@@ -118,9 +160,19 @@ public class ES {
     }
     
     // Métodos Salida Print, los paso a String porque como no vamos a trabajar con ellos no importa
+
+    /**
+     *
+     * @param a
+     */
     public void escribir(String a){
         System.out.print(a);
     }
+
+    /**
+     *
+     * @param a
+     */
     public void escribirLn(String a){
         System.out.println(a);
     }

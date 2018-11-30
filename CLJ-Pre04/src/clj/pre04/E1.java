@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package clj.pre04;
-//import java.util.Scanner;
 /**
  *
  * @author juanmi
@@ -18,7 +17,6 @@ public class E1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Scanner sc = new Scanner(System.in);
         ES ES = new ES(); //Instancia de la clase ES
         int[] numeros = new int[5];
         int total = 0;
