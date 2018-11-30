@@ -18,26 +18,103 @@ public class ES {
     }
     
     // Métodos de entrada por teclado
-    public int leerEntero(){
-        return sc.nextInt();
+    public int leerEntero(String text){
+        int numero;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                numero = sc.nextInt();
+                sc.nextLine();
+                return numero;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Utiliza solo números enteros.");
+            }
+        }
     }
-    public long leerEnteroLargo(){
-        return sc.nextLong();
+    public long leerEnteroLargo(String text){
+        long numero;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                numero = sc.nextLong();
+                sc.nextLine();
+                return numero;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Utiliza solo números enteros o Largos.");
+            }
+        }
     }
-    public float leerReal(){
-        return sc.nextFloat();
+    public float leerReal(String text){
+        float numero;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                numero = sc.nextFloat();
+                sc.nextLine();
+                return numero;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo un número real.");
+            }
+        }
     }
-    public double leerRealLArgo(){
-        return sc.nextDouble();
+    public double leerRealLArgo(String text){
+        double numero;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                numero = sc.nextDouble();
+                sc.nextLine();
+                return numero;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo un Real Largo.");
+            }
+        }
     }
-    public String leerCadena(){
-        return sc.next();
+    public String leerCadena(String text){
+        String cadena;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                cadena = sc.nextLine();
+                sc.nextLine();
+                return cadena;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo una cadena de texto.");
+            }
+        }
     }
-    public Character leerCaracter(){
-        return sc.next().charAt(0);
+    public Character leerCaracter(String text){
+        char caracter;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                caracter = sc.next().charAt(0);
+                sc.nextLine();
+                return caracter;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo un caracter.");
+            }
+        }
     }
-    public Boolean leerBooleano(){
-        return sc.nextBoolean();
+    public Boolean leerBooleano(String text){
+        boolean boleano;
+        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+            System.out.println(text);
+            try{
+                boleano = sc.nextBoolean();
+                sc.nextLine();
+                return boleano;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo un caracter.");
+            }
+        }
     }
     
     // Métodos Salida Print, los paso a String porque como no vamos a trabajar con ellos no importa

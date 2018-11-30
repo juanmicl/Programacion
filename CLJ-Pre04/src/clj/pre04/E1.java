@@ -4,24 +4,27 @@
  * and open the template in the editor.
  */
 package clj.pre04;
+//import java.util.Scanner;
 /**
  *
  * @author juanmi
  */
 public class E1 {
+    public E1() {
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //Scanner sc = new Scanner(System.in);
         ES ES = new ES(); //Instancia de la clase ES
         int[] numeros = new int[5];
         int total = 0;
         
         for (int i = 0; i < 5; i++) {
-            System.out.println("Introduce el número de la posición "+i+": ");
-            numeros[i] = ES.leerEntero();
+            numeros[i] = ES.leerEntero("Introduce el número de la posición "+i+": ");
         }
         
         for (int i = 0; i < 5; i++) {
