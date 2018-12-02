@@ -15,7 +15,7 @@ public class Usuario {
     private String apellidos;
     private int edad;
     private String dni;
-    private String[][] array = new String[10][4];
+    private static String[][] array = new String[10][4];
 
     /**
      *  CONSTRUCTOR
@@ -62,9 +62,9 @@ public class Usuario {
     public void insertUsuario(int n){
         boolean repe = false;
         for (int i = 0; i < 10; i++) {
-            if (array[i][3] == dni) {
+            if (dni.equals(array[i][3])) {
                 repe = true;
-            }
+            }      
         }
         if (repe == false) {
             try {

@@ -14,7 +14,7 @@ public class E3 {
         // Declaramos variables
         ES ES = new ES(); //Instancia de la clase ES    
         int opcion;
-        int id = 0;
+        int id;
         boolean salir = false;
         
         while(salir == false){
@@ -29,17 +29,23 @@ public class E3 {
             
             switch (opcion){
                 case 1:
-                    if (id < 10) {
+                    id = ES.leerEntero("Elige ID para este usuario (1-10): ");
+                    if (id <=10 && id > 0) {
                         String nombre = ES.leerCadena("Introduce el nombre: ");
                         String apellidos = ES.leerCadena("Introduce apellidos: ");
                         int edad = ES.leerEntero("Introduce la edad: ");
                         String dni = ES.leerCadena("Introduce el dni: ");
                         Usuario a = new Usuario(nombre, apellidos, edad, dni);
                         a.insertUsuario(id);
-                        id++;
+                        /*
+                        * en php puedo poner if(a.insertUsuario(id)) pero aquí parece que no.
+                        * una solución posible sería darle un return con true o false si se ha insertado o no.
+                        * si sabes algo del tipo de if que te he puesto arriba en java comentamelo pls.
+                        */
                     } else {
-                        ES.escribirLn("Se ha excedido el número máximo de usuarios en el array.");
+                        ES.escribirLn("El ID debe de estar entre 1 y 10");
                     }
+                    
                     break;
                 case 2:
                     break;
