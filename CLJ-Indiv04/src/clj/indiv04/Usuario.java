@@ -62,7 +62,7 @@ public class Usuario {
     public void insertUsuario(int n){
         boolean repe = false;
         for (int i = 0; i < 10; i++) {
-            if (array[i][3].equals(dni)) {
+            if (array[i][3] == dni) {
                 repe = true;
             }
         }
@@ -78,7 +78,7 @@ public class Usuario {
             System.out.println("Usuario insertado correctamente.");
         } else {
             System.out.println("Ya existe un usuario con el mismo DNI en el array.");
-        }   
+        }
     }
     
     /**
