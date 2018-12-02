@@ -59,7 +59,11 @@ public class Usuario {
         a = this.dni;
     }
     
-    public void insertUsuario(int n){
+    /**
+     *
+     * @param id
+     */
+    public void insertUsuario(int id){
         boolean repe = false;
         for (int i = 0; i < 10; i++) {
             if (dni.equals(array[i][3])) {
@@ -68,10 +72,10 @@ public class Usuario {
         }
         if (repe == false) {
             try {
-                array[n][0] = nombre;
-                array[n][1] = apellidos;
-                array[n][2] = Integer.toString(edad);
-                array[n][3] = dni;
+                array[id][0] = nombre;
+                array[id][1] = apellidos;
+                array[id][2] = Integer.toString(edad);
+                array[id][3] = dni;
             } catch (Error e){
                 System.out.println("Error al Introducir el usuario.");
             }
@@ -79,6 +83,19 @@ public class Usuario {
         } else {
             System.out.println("Ya existe un usuario con el mismo DNI en el array.");
         }
+    }
+    
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public String leerUsuario(int id){
+        nombre = array[id][0];
+        apellidos = array[id][1];
+        edad = Integer.parseInt(array[id][2]);
+        dni = array[id][3];
+        return "Nombre: "+nombre+" | Apellidos: "+apellidos+" | Edad: "+edad+" | DNI: "+dni;
     }
     
     /**
