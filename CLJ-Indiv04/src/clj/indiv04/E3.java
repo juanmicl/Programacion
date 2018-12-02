@@ -14,6 +14,7 @@ public class E3 {
         // Declaramos variables
         ES ES = new ES(); //Instancia de la clase ES    
         int opcion;
+        int id = 0;
         boolean salir = false;
         
         while(salir == false){
@@ -28,12 +29,22 @@ public class E3 {
             
             switch (opcion){
                 case 1:
-                    String nombre = ES.leerCadena("Introduce el nombre: ");
-                    String apellidos = ES.leerCadena("Introduce apellidos: ");
-                    int edad = ES.leerEntero("Introduce la edad: ");
-                    String dni = ES.leerCadena("Introduce el dni: ");
-                    Usuario a = new Usuario(nombre, apellidos, edad, dni);
-                    a.insertUsuario(1);
+                    if (id < 10) {
+                        String nombre = ES.leerCadena("Introduce el nombre: ");
+                        String apellidos = ES.leerCadena("Introduce apellidos: ");
+                        int edad = ES.leerEntero("Introduce la edad: ");
+                        String dni = ES.leerCadena("Introduce el dni: ");
+                        Usuario a = new Usuario(nombre, apellidos, edad, dni);
+                        a.insertUsuario(id);
+                        id++;
+                    } else {
+                        ES.escribirLn("Se ha excedido el número máximo de usuarios en el array.");
+                    }
+                    break;
+                case 2:
+                    break;
+                case 0:
+                    salir = true;
                     break;
                 default:
                     ES.escribirLn("Debes de introducir una de las opciones listadas arriba.");
