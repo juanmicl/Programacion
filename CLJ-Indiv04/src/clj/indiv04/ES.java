@@ -109,7 +109,7 @@ public class ES {
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
             System.out.println(text);
             try{
-                cadena = sc.nextLine();
+                cadena = sc.next();
                 sc.nextLine();
                 return cadena;
             } catch (java.util.InputMismatchException e) {
