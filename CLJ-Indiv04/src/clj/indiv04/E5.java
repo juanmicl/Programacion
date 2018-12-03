@@ -306,7 +306,15 @@ public class E5 {
                     System.out.println(texto);
                     break;
                 case 3:
-                    
+                    String ultimaFrase = "";
+                    String[] frases = texto.split("\\.");
+                    for (int i = frases.length-1; i > 0; i--) {
+                        if (frases[i].matches("(.*)\\$Hyperboss(.*)")){
+                            ultimaFrase = frases[i];
+                            break;
+                        }
+                    }
+                    System.out.println(ultimaFrase);
                     break;
                 case 0:
                     salir = true;
@@ -316,6 +324,5 @@ public class E5 {
                     break;
             }
         }
-    }
-    
+    } 
 }
