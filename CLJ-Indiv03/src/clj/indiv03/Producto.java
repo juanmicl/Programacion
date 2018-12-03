@@ -11,7 +11,7 @@ package clj.indiv03;
  */
 public class Producto {
     // Declaramos atributos
-    private int referencia;
+    private String referencia;
     private String nombre;
     private int unidades;
 
@@ -21,14 +21,14 @@ public class Producto {
      * @param nombre
      * @param unidades
      */
-    public Producto(int referencia, String nombre, int unidades) {
+    public Producto(String referencia, String nombre, int unidades) {
         this.referencia = referencia;
         this.nombre = nombre;
         this.unidades = unidades;
     }
     
     // Métodos get
-    public int getReferencia(){
+    public String getReferencia(){
         return referencia;
     }
     public String getNombre(){
@@ -39,7 +39,7 @@ public class Producto {
     }
     
     // Métodos set
-    public void setReferencia(int a){
+    public void setReferencia(String a){
         a = this.referencia;
     }
     public void setNombre(String a){

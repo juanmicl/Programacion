@@ -14,11 +14,12 @@ import java.util.InputMismatchException;
 public class Prueba {
     public static void main(String[] args) {
         // Declaramos variables
+        Utilidades Utilidades = new Utilidades(); //Instancia de la clase ES
         Scanner sc = new Scanner(System.in);
         int opcion;
         boolean salir = false;
         Usuario a = new Usuario("", "", 0, "");
-        Producto b = new Producto(0, "", 0);
+        Producto b = new Producto("", "", 0);
         
         while(salir == false){
             System.out.println("======== MENU ========");
@@ -35,7 +36,7 @@ public class Prueba {
                 opcion = sc.nextInt();
                 switch(opcion){
                     case 1:
-                        try {           
+                        try {       
                             System.out.println("Insertar Nombre: ");
                             a.setNombre(sc.next());
                             System.out.println("Insertar Apellidos: ");
@@ -52,7 +53,12 @@ public class Prueba {
                     case 2:
                         try {
                             System.out.println("Insertar Referencia: ");
-                            b.setReferencia(sc.nextInt());
+                            String ref = sc.next();
+                            while(Utilidades.comprobarReferenciaProducto(ref) != true) {
+                                System.out.println("Formato de Referencia incorrecto.");
+                                ref = sc.next();
+                            }
+                            b.setReferencia(ref);
                             System.out.println("Insertar Nombre: ");
                             b.setNombre(sc.next());
                             System.out.println("Insertar Unidades: ");
@@ -100,7 +106,7 @@ public class Prueba {
                         try {
                             switch (sc.nextInt()) {
                                 case 1:
-                                    b.setReferencia(sc.nextInt());
+                                    b.setReferencia(sc.next());
                                     break;
                                 case 2:
                                     b.setNombre(sc.next());
