@@ -40,13 +40,13 @@ public class Producto {
     
     // Métodos set
     public void setReferencia(String a){
-        a = this.referencia;
+        this.referencia = a;
     }
     public void setNombre(String a){
-        a = this.nombre;
+        this.nombre = a;
     }
     public void setUnidades(int a){
-        a = this.unidades;
+        this.unidades = a;
     }
     
     // Método toString

@@ -52,8 +52,7 @@ public class Prueba {
                         break;
                     case 2:
                         try {
-                            b.setReferencia("123");
-                            //b.setReferencia(Utilidades.comprobarReferenciaProducto());
+                            b.setReferencia(Utilidades.comprobarReferenciaProducto());
                             System.out.println("Insertar Nombre: ");
                             b.setNombre(sc.next());
                             System.out.println("Insertar Unidades: ");
@@ -82,7 +81,7 @@ public class Prueba {
                                     a.setEdad(sc.nextInt());
                                     break;
                                 case 4:
-                                    a.setDni(sc.next());
+                                    a.setDni(Utilidades.comprobarNIF(sc.next()));
                                     break;
                                 default:
                                     System.out.println("ERROR! Debes introducir un número indicado en el menú.");

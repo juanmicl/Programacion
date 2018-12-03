@@ -47,16 +47,16 @@ public class Usuario {
     
     // Métodos set
     public void setNombre(String a){
-        a = this.nombre;
+        this.nombre = a;
     }
     public void setApellidos(String a){
-        a = this.apellidos;
+        this.apellidos = a;
     }
     public void setEdad(int a){
-        a = this.edad;
+        this.edad = a;
     }
     public void setDni(String a){
-        a = this.dni;
+        this.dni = a;
     }
     
     /**
