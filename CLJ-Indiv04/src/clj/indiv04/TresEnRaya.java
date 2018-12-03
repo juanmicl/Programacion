@@ -85,7 +85,7 @@ public class TresEnRaya {
             cadena += tablero[i][1];
             cadena += tablero[i][2];
         }
-        cadena = cadena.replaceFirst(" ", "");
+        cadena = cadena.replace(" ", "");
         if (cadena.length() > 8) {
             return 0;
         }
