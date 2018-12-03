@@ -19,7 +19,7 @@ public class E2 {
         int tamano;
         int pares = 0;
         int impares = 0;
-        tamano = ES.leerEntero("Indica el tamaño del array: ");
+        tamano = ES.leerEntero(0, 100, "Indica el tamaño del array: ");
         int[] numeros = new int[tamano];
         
         for (int i = 0; i < tamano; i++) {

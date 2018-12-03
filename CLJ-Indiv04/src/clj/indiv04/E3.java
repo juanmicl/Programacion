@@ -25,15 +25,15 @@ public class E3 {
                 + "3. Leer Usuario\n"
                 + "0. Salir"
             );
-            opcion = ES.leerEntero("Selecciona opción: ");
+            opcion = ES.leerEntero(0, 3, "Selecciona opción: ");
             
             switch (opcion){
                 case 1:
-                    id = ES.leerEntero("Elige ID para este usuario (1-10): ");
+                    id = ES.leerEntero(1, 10, "Elige ID para este usuario (1-10): ");
                     if (id <= 10 && id > 0) {
                         String nombre = ES.leerCadena("Introduce el nombre: ");
                         String apellidos = ES.leerCadena("Introduce apellidos: ");
-                        int edad = ES.leerEntero("Introduce la edad: ");
+                        int edad = ES.leerEntero(1, 120, "Introduce la edad: ");
                         String dni = ES.leerCadena("Introduce el dni: ");
                         Usuario a = new Usuario(nombre, apellidos, edad, dni);
                         a.insertUsuario(id);
@@ -48,12 +48,12 @@ public class E3 {
                     
                     break;
                 case 2:
-                    id = ES.leerEntero("Introduce el ID del usuario que quiera borrar (1-10): ");
+                    id = ES.leerEntero(1, 10, "Introduce el ID del usuario que quiera borrar (1-10): ");
                     Usuario b = new Usuario(null, null, 0, null);
                     b.insertUsuario(id);
                     break;
                 case 3:
-                    id = ES.leerEntero("Introduce el ID del usuario que quiera borrar (1-10): ");
+                    id = ES.leerEntero(1, 10, "Introduce el ID del usuario que quiera borrar (1-10): ");
                     Usuario c = new Usuario(null, null, 0, null);
                     System.out.println(c.leerUsuario(id));
                     break;

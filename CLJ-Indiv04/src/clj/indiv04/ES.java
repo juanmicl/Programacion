@@ -21,17 +21,23 @@ public class ES {
 
     /**
      *
+     * @param minimo
+     * @param maximo
      * @param text
      * @return
      */
-    public int leerEntero(String text){
+    public int leerEntero(int minimo, int maximo, String text){
         int numero;
         while (true) {  // se ejecuta siempre hasta que se hace un return :)          
             System.out.println(text);
             try{
                 numero = sc.nextInt();
                 sc.nextLine();
-                return numero;
+                if (numero >= minimo && numero <= maximo) {
+                    return numero;
+                } else {
+                    System.out.println("Error: El número debe de estar entre "+minimo+" y "+maximo);
+                } 
             } catch (java.util.InputMismatchException e) {
                 sc.nextLine();
                 System.out.println("Error: Utiliza solo números enteros.");

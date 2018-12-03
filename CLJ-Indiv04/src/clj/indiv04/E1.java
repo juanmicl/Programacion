@@ -20,7 +20,7 @@ public class E1 {
         int media = 0;
         int nMayor = 0;
         int nMenor = 100;
-        tamano = ES.leerEntero("Indica el tamaño del array: ");
+        tamano = ES.leerEntero(0, 100, "Indica el tamaño del array: ");
         int[] numeros = new int[tamano];
         
         for (int i = 0; i < tamano; i++) {

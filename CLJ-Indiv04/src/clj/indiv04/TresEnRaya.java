@@ -6,9 +6,6 @@
 package clj.indiv04;
 //import java.util.Random;
 
-import java.awt.Event;
-import javafx.scene.input.KeyCode;
-
 /**
  *
  * @author 0101001011
@@ -16,23 +13,23 @@ import javafx.scene.input.KeyCode;
 public class TresEnRaya {
 
     static ES ES = new ES(); //Instancia de la clase ES
-    static Character[][] tablero = new Character[3][3];
+    static String[][] tablero = new String[3][3];
 
     /**
      *
      */
-    static public void reiniciarTablero() {
+    public static void reiniciarTablero() {
         for (int i = 0; i < 3; i++) {
-            tablero[i][0] = ' ';
-            tablero[i][1] = ' ';
-            tablero[i][2] = ' ';
+            tablero[i][0] = " ";
+            tablero[i][1] = " ";
+            tablero[i][2] = " ";
         }
     }
 
     /**
      *
      */
-    static public void pintarTablero() {
+    public static void pintarTablero() {
         ES.escribirLn(
                 "-------------\n"
                 + "| " + tablero[0][0] + " | " + tablero[0][1] + " | " + tablero[0][2] + " |\n"
@@ -43,7 +40,82 @@ public class TresEnRaya {
                 + "-------------\n"
         );
     }
-
+    
+    /**
+     *
+     * @param a
+     * @return
+     */
+    public static int comprobarGanador(Character a) {
+        String linea = null;
+        String cadena = "";
+        int ganador = 0;
+        
+        for (int i = 0; i < 3; i++) {
+            cadena += tablero[i][0];
+            cadena += tablero[i][1];
+            cadena += tablero[i][2];
+        }
+        
+        if (cadena.length() > 8) {
+            return ganador;
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            switch (i) {
+                case 0:
+                    linea = tablero[0][0]+tablero[0][1]+tablero[0][2];
+                    break;
+                case 1:
+                    linea = tablero[0][0]+tablero[1][0]+tablero[2][0];
+                    break;
+                case 2:
+                    linea = tablero[0][2]+tablero[1][2]+tablero[2][2];
+                    break;
+                case 3:
+                    linea = tablero[2][0]+tablero[2][1]+tablero[2][2];
+                    break;
+                case 4:
+                    linea = tablero[0][0]+tablero[1][1]+tablero[2][2];
+                    break;
+                case 5:
+                    linea = tablero[0][2]+tablero[1][1]+tablero[2][0];
+                    break;
+            }
+        }
+        if (linea == "XXX") {
+            ganador = 1;
+        } else if (linea == "OOO") {
+            ganador = 2;
+        }
+        return ganador;
+    }
+    
+    public static boolean comprobarCelda(int fila, int columna, char simbolo, boolean mostrarMensajes){
+        if (tablero[fila][columna] ==  " ") {
+            tablero[fila][columna] = Character.toString(simbolo);
+            return true;
+        } else {
+            if (mostrarMensajes != false) {
+                ES.escribirLn("La casilla está ocupada por otra ficha.");
+            }
+            return false;
+        }
+    }
+    
+    public static void colocarFicha(String nombreJugador, char ficha){
+        int fila;
+        int columna;
+        boolean libre = false;
+        
+        fila = ES.leerEntero(1, 3, "Introduce la fila: ");
+        columna = ES.leerEntero(1, 3, "Introduce la columna: ");
+        
+        while (libre) {
+            libre = comprobarCelda(fila, columna, ficha, true);
+        } 
+    }
+    
     /**
      *
      * @param args
@@ -59,7 +131,7 @@ public class TresEnRaya {
                     + "1. Jugador vs CPU\n"
                     + "2. Jugador 1 vs Jugador 2\n"
             );
-            opcion = ES.leerEntero("Selecciona opción: ");
+            opcion = ES.leerEntero(0, 2, "Selecciona opción: ");
 
             switch (opcion) {
                 case 0:
