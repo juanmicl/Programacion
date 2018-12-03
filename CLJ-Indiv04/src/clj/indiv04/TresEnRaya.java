@@ -39,7 +39,7 @@ public class TresEnRaya {
                 + "-------------\n"
         );
     }
-    
+
     /**
      *
      * @return
@@ -48,52 +48,55 @@ public class TresEnRaya {
         String linea = null;
         String cadena = "";
         int ganador = -1;
-        
+
+        for (int i = 0; i < 7; i++) {
+            switch (i) {
+                case 0:
+                    linea = tablero[0][0] + tablero[0][1] + tablero[0][2];
+                    break;
+                case 1:
+                    linea = tablero[0][0] + tablero[1][0] + tablero[2][0];
+                    break;
+                case 2:
+                    linea = tablero[0][2] + tablero[1][2] + tablero[2][2];
+                    break;
+                case 3:
+                    linea = tablero[2][0] + tablero[2][1] + tablero[2][2];
+                    break;
+                case 4:
+                    linea = tablero[0][0] + tablero[1][1] + tablero[2][2];
+                    break;
+                case 5:
+                    linea = tablero[0][2] + tablero[1][1] + tablero[2][0];
+                    break;
+                case 6:
+                    linea = tablero[1][0] + tablero[1][1] + tablero[1][2];
+                    break;
+            }
+
+            if (linea.matches("XXX")) {
+                return 1;
+            } else if (linea.matches("OOO")) {
+                return 2;
+            }
+        }
         for (int i = 0; i < 3; i++) {
             cadena += tablero[i][0];
             cadena += tablero[i][1];
             cadena += tablero[i][2];
         }
-        
-        if (cadena.length() < 8) {
+        cadena = cadena.replaceFirst(" ", "");
+        if (cadena.length() > 8) {
             return 0;
-        }
-        
-        for (int i = 0; i < 6; i++) {
-            switch (i) {
-                case 0:
-                    linea = tablero[0][0]+tablero[0][1]+tablero[0][2];
-                    break;
-                case 1:
-                    linea = tablero[0][0]+tablero[1][0]+tablero[2][0];
-                    break;
-                case 2:
-                    linea = tablero[0][2]+tablero[1][2]+tablero[2][2];
-                    break;
-                case 3:
-                    linea = tablero[2][0]+tablero[2][1]+tablero[2][2];
-                    break;
-                case 4:
-                    linea = tablero[0][0]+tablero[1][1]+tablero[2][2];
-                    break;
-                case 5:
-                    linea = tablero[0][2]+tablero[1][1]+tablero[2][0];
-                    break;
-            }
-        }
-        if (linea == "XXX") {
-            ganador = 1;
-        } else if (linea == "OOO") {
-            ganador = 2;
         }
         return ganador;
     }
-    
-    public static boolean comprobarCelda(int fila, int columna, char simbolo, boolean mostrarMensajes){
+
+    public static boolean comprobarCelda(int fila, int columna, char simbolo, boolean mostrarMensajes) {
         fila--;
         columna--;
 
-        if (tablero[fila][columna] ==  " ") {
+        if (tablero[fila][columna] == " ") {
             tablero[fila][columna] = Character.toString(simbolo);
             return true;
         } else {
@@ -103,33 +106,33 @@ public class TresEnRaya {
             return false;
         }
     }
-    
-    public static void colocarFicha(String nombreJugador, char ficha){
+
+    public static void colocarFicha(String nombreJugador, char ficha) {
         int fila = 0;
         int columna = 0;
         boolean libre = false;
-        
+
         while (libre == false) {
             fila = ES.leerEntero(1, 3, "Introduce la fila: ");
             columna = ES.leerEntero(1, 3, "Introduce la columna: ");
             libre = comprobarCelda(fila, columna, ficha, true);
         }
-        
-        ES.escribirLn("El jugador "+nombreJugador+" ha colocado su ficha en "+fila+"-"+columna);
+
+        ES.escribirLn("El jugador " + nombreJugador + " ha colocado su ficha en " + fila + "-" + columna);
     }
-    
-    public static void logicaCPU(){
+
+    public static void logicaCPU() {
         int fila;
         int columna;
         boolean libre = false;
-        
+
         while (libre != true) {
             fila = (int) (Math.random() * ((3 - 1) + 1) + 1);
             columna = (int) (Math.random() * ((3 - 1) + 1) + 1);
             libre = comprobarCelda(fila, columna, 'O', false);
         }
     }
-    
+
     /**
      *
      * @param args
@@ -156,12 +159,16 @@ public class TresEnRaya {
                 case 1:
                     reiniciarTablero();
                     jugando = true;
-                    while (jugando) {                        
+                    while (jugando) {
                         pintarTablero();
                         ES.escribirLn("Jugador 1:");
                         colocarFicha("Jugador 1", 'X');
                         ES.escribirLn("Turno de CPU");
-                        logicaCPU();
+                        ganador = comprobarGanador();
+                        if (ganador == -1) {
+                            logicaCPU();
+                            pintarTablero();
+                        }
                         ganador = comprobarGanador();
                         switch (ganador) {
                             case 0:
@@ -183,6 +190,38 @@ public class TresEnRaya {
                     }
                     break;
                 case 2:
+                    reiniciarTablero();
+                    jugando = true;
+                    while (jugando) {
+                        pintarTablero();
+                        ES.escribirLn("Jugador 1:");
+                        colocarFicha("Jugador 1", 'X');
+                        pintarTablero();
+                        ES.escribirLn("Jugador 2:");
+                        ganador = comprobarGanador();
+                        if (ganador == -1) {
+                            colocarFicha("Jugador 2", 'O');
+                            pintarTablero();
+                        }
+                        ganador = comprobarGanador();
+                        switch (ganador) {
+                            case 0:
+                                ES.escribirLn("EMPATE");
+                                jugando = false;
+                                break;
+                            case 1:
+                                ES.escribirLn("Jugador 1 Gana");
+                                jugando = false;
+                                break;
+                            case 2:
+                                ES.escribirLn("Jugador 2 Gana");
+                                jugando = false;
+                                break;
+                            default:
+                                ES.escribirLn("Siguiente turno");
+                                break;
+                        }
+                    }
                     break;
                 default:
                     ES.escribirLn("Debes de introducir una de las opciones listadas arriba.");
