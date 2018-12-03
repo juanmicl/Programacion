@@ -123,11 +123,10 @@ public class TresEnRaya {
         int columna;
         boolean libre = false;
         
-        fila = (int) (Math.random() * ((3 - 1) + 1) + 1);
-        columna = (int) (Math.random() * ((3 - 1) + 1) + 1);
-        
-        while (libre == false) {
-            libre = comprobarCelda(fila, columna, 'O', false);  
+        while (libre != true) {
+            fila = (int) (Math.random() * ((3 - 1) + 1) + 1);
+            columna = (int) (Math.random() * ((3 - 1) + 1) + 1);
+            libre = comprobarCelda(fila, columna, 'O', false);
         }
     }
     
@@ -163,19 +162,19 @@ public class TresEnRaya {
                         colocarFicha("Jugador 1", 'X');
                         ES.escribirLn("Turno de CPU");
                         logicaCPU();
-                        //ganador = comprobarGanador();
+                        ganador = comprobarGanador();
                         switch (ganador) {
                             case 0:
                                 ES.escribirLn("EMPATE");
-                                //jugando = false;
+                                jugando = false;
                                 break;
                             case 1:
                                 ES.escribirLn("Jugador 1 Gana");
-                                //jugando = false;
+                                jugando = false;
                                 break;
                             case 2:
                                 ES.escribirLn("CPU Gana");
-                                //jugando = false;
+                                jugando = false;
                                 break;
                             default:
                                 ES.escribirLn("Siguiente turno");
