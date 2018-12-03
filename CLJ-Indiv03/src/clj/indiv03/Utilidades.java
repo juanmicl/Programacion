@@ -24,12 +24,39 @@ public class Utilidades {
      * @param nif
      * @return 
      */
-    public boolean comprobarNIF(String nif){
-        return true;
+    public String comprobarNIF(String nif){
+        System.out.println("Seleccione:\n"
+                + "1. Español mayor de 18 años.\n"
+                + "2. Extranjero.");
+        int opcion = sc.nextInt();
+        switch(opcion){
+            case 1:
+                while (!nif.matches("^[0-9]{8}[A-Z]$")) {
+                    System.out.println("Formato NIF incorrecto.\n"
+                            + "Insertar NIF: ");
+                    nif = sc.next();
+                }
+                break;
+            case 2:
+                while (!nif.matches("^[MXYZ][0-9]{7}[A-Z]$")) {
+                    System.out.println("Formato NIF Extranjero incorrecto.\n"
+                            + "Insertar NIF Extranjero: ");
+                    nif = sc.next();
+                }
+                break;
+        }
+        return nif;
     }
     
-    public boolean comprobarReferenciaProducto(String ref){
-        return ref.matches("^[^OL]{3}[0-9]{2}$");
+    public String comprobarReferenciaProducto(){
+        System.out.println("Insertar Referencia: ");
+        String ref = sc.next();
+        while(!ref.matches("^[^OL]{3}[0-9]{2}$")) {
+            System.out.println("Formato de Referencia incorrecto.\n"
+                    + "Insertar Referencia: ");
+            ref = sc.next();
+        }
+        return ref;
     }
     
     /**

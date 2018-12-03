@@ -43,8 +43,8 @@ public class Prueba {
                             a.setApellidos(sc.next());
                             System.out.println("Insertar Edad: ");
                             a.setEdad(sc.nextInt());
-                            System.out.println("Insertar DNI: ");
-                            a.setDni(sc.next());
+                            System.out.println("Insertar NIF: ");
+                            a.setDni(Utilidades.comprobarNIF(sc.next()));
                             System.out.println(a);
                         } catch (Exception e) {
                             System.out.println("ERROR! Debes de introducir datos válidos.");
@@ -52,13 +52,8 @@ public class Prueba {
                         break;
                     case 2:
                         try {
-                            System.out.println("Insertar Referencia: ");
-                            String ref = sc.next();
-                            while(Utilidades.comprobarReferenciaProducto(ref) != true) {
-                                System.out.println("Formato de Referencia incorrecto.");
-                                ref = sc.next();
-                            }
-                            b.setReferencia(ref);
+                            b.setReferencia("123");
+                            //b.setReferencia(Utilidades.comprobarReferenciaProducto());
                             System.out.println("Insertar Nombre: ");
                             b.setNombre(sc.next());
                             System.out.println("Insertar Unidades: ");
@@ -106,7 +101,7 @@ public class Prueba {
                         try {
                             switch (sc.nextInt()) {
                                 case 1:
-                                    b.setReferencia(sc.next());
+                                    b.setReferencia(Utilidades.comprobarReferenciaProducto());
                                     break;
                                 case 2:
                                     b.setNombre(sc.next());
