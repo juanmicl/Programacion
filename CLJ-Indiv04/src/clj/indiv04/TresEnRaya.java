@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package clj.indiv04;
-//import java.util.Random;
 
 /**
  *
@@ -13,7 +12,7 @@ package clj.indiv04;
 public class TresEnRaya {
 
     static ES ES = new ES(); //Instancia de la clase ES
-    static String[][] tablero = new String[3][3];
+    private static String[][] tablero = new String[3][3];
 
     /**
      *
@@ -43,13 +42,12 @@ public class TresEnRaya {
     
     /**
      *
-     * @param a
      * @return
      */
-    public static int comprobarGanador(Character a) {
+    public static int comprobarGanador() {
         String linea = null;
         String cadena = "";
-        int ganador = 0;
+        int ganador = -1;
         
         for (int i = 0; i < 3; i++) {
             cadena += tablero[i][0];
@@ -57,8 +55,8 @@ public class TresEnRaya {
             cadena += tablero[i][2];
         }
         
-        if (cadena.length() > 8) {
-            return ganador;
+        if (cadena.length() < 8) {
+            return 0;
         }
         
         for (int i = 0; i < 6; i++) {
@@ -92,6 +90,9 @@ public class TresEnRaya {
     }
     
     public static boolean comprobarCelda(int fila, int columna, char simbolo, boolean mostrarMensajes){
+        fila--;
+        columna--;
+
         if (tablero[fila][columna] ==  " ") {
             tablero[fila][columna] = Character.toString(simbolo);
             return true;
@@ -104,16 +105,30 @@ public class TresEnRaya {
     }
     
     public static void colocarFicha(String nombreJugador, char ficha){
+        int fila = 0;
+        int columna = 0;
+        boolean libre = false;
+        
+        while (libre == false) {
+            fila = ES.leerEntero(1, 3, "Introduce la fila: ");
+            columna = ES.leerEntero(1, 3, "Introduce la columna: ");
+            libre = comprobarCelda(fila, columna, ficha, true);
+        }
+        
+        ES.escribirLn("El jugador "+nombreJugador+" ha colocado su ficha en "+fila+"-"+columna);
+    }
+    
+    public static void logicaCPU(){
         int fila;
         int columna;
         boolean libre = false;
         
-        fila = ES.leerEntero(1, 3, "Introduce la fila: ");
-        columna = ES.leerEntero(1, 3, "Introduce la columna: ");
+        fila = (int) (Math.random() * ((3 - 1) + 1) + 1);
+        columna = (int) (Math.random() * ((3 - 1) + 1) + 1);
         
-        while (libre) {
-            libre = comprobarCelda(fila, columna, ficha, true);
-        } 
+        while (libre == false) {
+            libre = comprobarCelda(fila, columna, 'O', false);  
+        }
     }
     
     /**
@@ -122,6 +137,8 @@ public class TresEnRaya {
      */
     public static void main(String[] args) {
         int opcion;
+        int ganador = -1;
+        boolean jugando = false;
         boolean salir = false;
 
         while (salir == false) {
@@ -139,7 +156,32 @@ public class TresEnRaya {
                     break;
                 case 1:
                     reiniciarTablero();
-                    pintarTablero();
+                    jugando = true;
+                    while (jugando) {                        
+                        pintarTablero();
+                        ES.escribirLn("Jugador 1:");
+                        colocarFicha("Jugador 1", 'X');
+                        ES.escribirLn("Turno de CPU");
+                        logicaCPU();
+                        //ganador = comprobarGanador();
+                        switch (ganador) {
+                            case 0:
+                                ES.escribirLn("EMPATE");
+                                //jugando = false;
+                                break;
+                            case 1:
+                                ES.escribirLn("Jugador 1 Gana");
+                                //jugando = false;
+                                break;
+                            case 2:
+                                ES.escribirLn("CPU Gana");
+                                //jugando = false;
+                                break;
+                            default:
+                                ES.escribirLn("Siguiente turno");
+                                break;
+                        }
+                    }
                     break;
                 case 2:
                     break;
