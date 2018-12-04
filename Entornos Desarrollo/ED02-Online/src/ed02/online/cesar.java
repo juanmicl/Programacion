@@ -35,8 +35,6 @@ public class cesar {
     }
 
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
         String texto = "LKQÑF GTÑZU";
         for (int i = 0; i < 26; i++) {
             System.out.println(encrypt(texto, 27-i)+" | "+i);
