@@ -68,7 +68,7 @@ public class Rectangulo {
         
         base = vertice2.getX() - vertice1.getX();
         altura = vertice2.getY() - vertice1.getY();
-        return base * altura;
+        return base + altura;
         
     }
     
