@@ -26,7 +26,7 @@ public class ES {
      */
     public int leerEntero() {
         int numero;
-        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+        while (true) {          
             try {
                 numero = sc.nextInt();
                 sc.nextLine();
@@ -56,12 +56,32 @@ public class ES {
      */
     public int leerEntero(String text, int minimo) {
         int numero;
-        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+        while (true) {         
             numero = leerEntero(text);
             if (numero >= minimo) {
                 return numero;
             } else {
                 System.out.println("Error: El número debe de ser mayor que " + minimo);
+            }
+        }
+    }
+    
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public String leerCadena(String text) {
+        String cadena;
+        while (true) {        
+            System.out.println(text);
+            try {
+                cadena = sc.next();
+                sc.nextLine();
+                return cadena;
+            } catch (java.util.InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Introduce solo una cadena de texto.");
             }
         }
     }
@@ -73,9 +93,9 @@ public class ES {
      * @param text
      * @return
      */
-    public float leerDecimal(int min, String text) {
+    public float leerReal(String text, float min) {
         float numero;
-        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
+        while (true) {
             System.out.println(text);
             try {
                 numero = sc.nextFloat();
@@ -88,46 +108,6 @@ public class ES {
             } catch (java.util.InputMismatchException e) {
                 sc.nextLine();
                 System.out.println("Error: Introduce solo un número real.");
-            }
-        }
-    }
-
-    /**
-     *
-     * @param text
-     * @return
-     */
-    public long leerEnteroLargo(String text) {
-        long numero;
-        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
-            System.out.println(text);
-            try {
-                numero = sc.nextLong();
-                sc.nextLine();
-                return numero;
-            } catch (java.util.InputMismatchException e) {
-                sc.nextLine();
-                System.out.println("Error: Utiliza solo números enteros o Largos.");
-            }
-        }
-    }
-
-    /**
-     *
-     * @param text
-     * @return
-     */
-    public String leerCadena(String text) {
-        String cadena;
-        while (true) {  // se ejecuta siempre hasta que se hace un return :)          
-            System.out.println(text);
-            try {
-                cadena = sc.next();
-                sc.nextLine();
-                return cadena;
-            } catch (java.util.InputMismatchException e) {
-                sc.nextLine();
-                System.out.println("Error: Introduce solo una cadena de texto.");
             }
         }
     }
