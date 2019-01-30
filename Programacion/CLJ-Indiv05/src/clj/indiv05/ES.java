@@ -28,12 +28,10 @@ public class ES {
 
         while (true) {          
             try {
-                numero = sc.nextInt();
-                sc.nextLine();
-                return numero;
+                return sc.nextInt();
             } catch (java.util.InputMismatchException e) {
                 sc.nextLine();
-                System.out.println("Error: Utiliza solo números enteros.");
+                escribirLn("Error: Utiliza solo números enteros.");
             }
         }
     }
@@ -44,7 +42,7 @@ public class ES {
      * @return
      */
     public static int leerEntero(String text) {
-        System.out.println(text);
+        escribirLn(text);
         return leerEntero();
     }
 
@@ -60,7 +58,7 @@ public class ES {
             if (numero >= minimo) {
                 return numero;
             } else {
-                System.out.println("Error: El número debe de ser mayor que " + minimo);
+                escribirLn("Error: El número debe de ser mayor que " + minimo);
             }
         }
     }
@@ -71,16 +69,13 @@ public class ES {
      * @return
      */
     public String leerCadena(String text) {
-        String cadena;
         while (true) {        
-            System.out.println(text);
+            escribirLn(text);
             try {
-                cadena = sc.next();
-                sc.nextLine();
-                return cadena;
+                return sc.next();
             } catch (java.util.InputMismatchException e) {
                 sc.nextLine();
-                System.out.println("Error: Introduce solo una cadena de texto.");
+                escribirLn("Error: Introduce solo una cadena de texto.");
             }
         }
     }
@@ -95,18 +90,18 @@ public class ES {
     public float leerReal(String text, float min) {
         float numero;
         while (true) {
-            System.out.println(text);
+            escribirLn(text);
             try {
                 numero = sc.nextFloat();
                 sc.nextLine();
                 if (numero < min) {
-                    System.out.println("Error: El número debe de ser mayor que " + min);
+                    escribirLn("Error: El número debe de ser mayor que " + min);
                 } else {
                     return numero;
                 }
             } catch (java.util.InputMismatchException e) {
                 sc.nextLine();
-                System.out.println("Error: Introduce solo un número real.");
+                escribirLn("Error: Introduce solo un número real.");
             }
         }
     }
@@ -125,7 +120,7 @@ public class ES {
      *
      * @param a
      */
-    public void escribirLn(String a) {
+    public static void escribirLn(String a) {
         System.out.println(a);
     }
 }
