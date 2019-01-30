@@ -12,8 +12,8 @@ import java.util.Scanner;
  * @author juanmi
  */
 public class ES {
-
-    Scanner sc = new Scanner(System.in);
+    static int numero;
+    static Scanner sc = new Scanner(System.in);
 
     // Constructor vacío porque no le vamos a pasar nada
     public ES() {
@@ -24,8 +24,8 @@ public class ES {
      * Leer entero solamente
      * @return
      */
-    public int leerEntero() {
-        int numero;
+    public static int leerEntero() {
+
         while (true) {          
             try {
                 numero = sc.nextInt();
@@ -43,7 +43,7 @@ public class ES {
      * @param text
      * @return
      */
-    public int leerEntero(String text) {
+    public static int leerEntero(String text) {
         System.out.println(text);
         return leerEntero();
     }
@@ -54,8 +54,7 @@ public class ES {
      * @param text
      * @return
      */
-    public int leerEntero(String text, int minimo) {
-        int numero;
+    public static int leerEntero(String text, int minimo) {
         while (true) {         
             numero = leerEntero(text);
             if (numero >= minimo) {

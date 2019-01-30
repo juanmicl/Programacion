@@ -9,13 +9,14 @@ package clj.indiv05;
  *
  * @author 0101001011
  */
-public class CLJIndiv05 {
+public class AlquilerVehiculos {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ES ES = new ES();
+        System.out.println(ES.leerEntero("holi caracoli"));
     }
     
 }
