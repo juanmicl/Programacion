@@ -6,7 +6,9 @@
 package clj.indiv05;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -14,19 +16,41 @@ import java.util.Date;
  */
 public class Alquiler {
     
-    private SimpleDateFormat FORMATO_FECHA;
-    private double PRECIO_DIA;
-    private int MILISEGUNDOS_DIA;
-    private Date Fecha;
-    private int dias;
+    private final SimpleDateFormat FORMATO_FECHA;
+    private final double PRECIO_DIA;
+    private final int MILISEGUNDOS_DIA;
+    public Date Fecha;
+    public int dias;
 
-    public Alquiler(String Cliente, String Vehiculo) {
-        this.FORMATO_FECHA = FORMATO_FECHA;
-        this.PRECIO_DIA = PRECIO_DIA;
-        this.MILISEGUNDOS_DIA = MILISEGUNDOS_DIA;
-        this.Fecha = Fecha;
+    public Alquiler(Cliente cliente, Vehiculo vehiculo) {
+        this.FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy");
+        this.PRECIO_DIA = 5.5;
+        this.MILISEGUNDOS_DIA = (int) System.currentTimeMillis();
+        this.Fecha = new Date();
         this.dias = 0;
     }
+
+    public SimpleDateFormat getFORMATO_FECHA() {
+        return FORMATO_FECHA;
+    }
+
+    public double getPRECIO_DIA() {
+        return PRECIO_DIA;
+    }
+
+    public int getMILISEGUNDOS_DIA() {
+        return MILISEGUNDOS_DIA;
+    }
+
+    public Date getFecha() {
+        return Fecha;
+    }
+
+    public int getDias() {
+        return dias;
+    }
     
-    
+    public void cerrar() {
+        
+    }
 }

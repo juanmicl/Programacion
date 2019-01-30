@@ -38,6 +38,15 @@ public class Vehiculo {
         this.telefono = telefono;
     }
     
+    public Vehiculo(Vehiculo vehiculo){
+        matricula = vehiculo.matricula;
+        marca = vehiculo.marca;
+        modelo = vehiculo.modelo;
+        presupuesto = vehiculo.presupuesto;
+        propietario = vehiculo.propietario;
+        telefono = vehiculo.telefono;
+    }
+    
     public String getMatricula(){
         return matricula;
     }

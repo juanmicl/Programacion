@@ -25,8 +25,12 @@ public class Vehiculo {
         this.disponible = true;
     }
 
-    public Vehiculo(Vehiculo Vehiculo) {
-        
+    public Vehiculo(Vehiculo vehiculo){
+        matricula = vehiculo.matricula;
+        marca = vehiculo.marca;
+        modelo = vehiculo.modelo;
+        cilindrada = vehiculo.cilindrada;
+        disponible = vehiculo.disponible;
     }
 
     public void setDisponible(boolean disponible) {

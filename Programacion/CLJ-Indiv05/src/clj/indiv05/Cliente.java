@@ -25,7 +25,12 @@ public class Cliente {
         this.codigoPostal = codigoPostal;
     }
 
-    public Cliente(Cliente Cliente) {
+    public Cliente(Cliente cliente) {
+        dni = cliente.dni;
+        nombre = cliente.nombre;
+        direccion = cliente.direccion;
+        localidad = cliente.localidad;
+        codigoPostal = cliente.codigoPostal;
     }
 
     public String getDni() {

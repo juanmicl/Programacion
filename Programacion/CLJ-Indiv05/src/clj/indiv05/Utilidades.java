@@ -17,7 +17,7 @@ public class Utilidades {
     public Utilidades() {
     }
     
-    public String comprobarMatricula(String matricula){
+    public String comprobarMatricula(String matricula) {
         while (!matricula.matches("^[0-9]{4}[A-Z]{3}$") && !matricula.matches("^[A-Z]{2}[0-9]{4}[A-Z]{2}$")) {
             System.out.println("Formato Matricula incorrecto.\n"
                     + "Insertar Matricula: ");
@@ -26,7 +26,7 @@ public class Utilidades {
         return matricula;
     }
     
-    public String comprobarDni(String dni){
+    public String comprobarDni(String dni) {
         while (!dni.matches("^[0-9]{8}[A-Z]$")) {
             System.out.println("Formato DNI incorrecto.\n"
                     + "Insertar DNI: ");
@@ -35,7 +35,7 @@ public class Utilidades {
         return dni;
     }
     
-    public String comprobarCodigoPostal(String cp){
+    public String comprobarCodigoPostal(String cp) {
         while (!cp.matches("^[0-9]{5}$")) {
             System.out.println("Formato Código Postal incorrecto.\n"
                     + "Insertar Código Postal: ");
@@ -44,7 +44,7 @@ public class Utilidades {
         return cp;
     }
     
-    public String comprobarTelefonoEsp(String telefono){
+    public String comprobarTelefonoEsp(String telefono) {
         while (!telefono.matches("^34[6789][0-9]{8}$")) {
             System.out.println("Formato Teléfono incorrecto.\n"
                     + "Insertar Teléfono: ");

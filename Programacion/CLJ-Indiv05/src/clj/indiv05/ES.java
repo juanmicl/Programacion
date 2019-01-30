@@ -12,9 +12,7 @@ import java.util.Scanner;
  * @author juanmi
  */
 public class ES {
-    static int numero;
     static Scanner sc = new Scanner(System.in);
-
     // Constructor vacío porque no le vamos a pasar nada
     public ES() {
     }
@@ -53,6 +51,7 @@ public class ES {
      * @return
      */
     public static int leerEntero(String text, int minimo) {
+        int numero;
         while (true) {         
             numero = leerEntero(text);
             if (numero >= minimo) {
