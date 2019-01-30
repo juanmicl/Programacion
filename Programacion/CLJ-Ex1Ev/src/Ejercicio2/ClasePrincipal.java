@@ -28,7 +28,7 @@ public class ClasePrincipal {
         String descripcion;
         String propietario;
         float presupuesto;
-        long telefono;
+        String telefono;
 
         boolean salir = false;
 
@@ -48,7 +48,7 @@ public class ClasePrincipal {
             switch (opcion) {
                 case 1:
                     id = ES.leerEntero(0, 10, "Introducir posición en el array: ");
-                    v[id] = new Vehiculo("", "", "", "", 0, "", 0);
+                    v[id] = new Vehiculo("", "", "", "", 0, "", "");
                     matricula = Utilidades.comprobarMatricula(ES.leerCadena("Insertar matrícula: "));
                     v[id].setMatricula(matricula);
                     marca = ES.leerCadena("Insertar marca: ");
@@ -59,7 +59,7 @@ public class ClasePrincipal {
                     v[id].setDescripcion(descripcion);
                     propietario = ES.leerCadena("Insertar propietario: ");
                     v[id].setPropietario(propietario);
-                    telefono = ES.leerEnteroLargo("Introduce teléfono: ");
+                    telefono = Utilidades.comprobarTelefonoEsp(ES.leerCadena("Introduce teléfono: "));
                     v[id].setTelefono(telefono);
                     presupuesto = ES.leerDecimal(0, "Insertar presupuesto: ");
                     v[id].setPresupuesto(presupuesto);
@@ -81,7 +81,7 @@ public class ClasePrincipal {
                     break;
                 case 6:
                     id = ES.leerEntero(0, 10, "Introducir posición en el array: ");
-                    v[id] = new Vehiculo("", "", "", "", 0, "", 0);
+                    v[id] = new Vehiculo("", "", "", "", 0, "", "");
                     break;
                 case 0:
                     salir = true;
@@ -91,7 +91,5 @@ public class ClasePrincipal {
                     break;
             }
         }
-
     }
-
 }

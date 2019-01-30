@@ -17,7 +17,7 @@ public class Vehiculo {
     private String descripcion;
     private float presupuesto;
     private String propietario;
-    private long telefono;
+    private String telefono;
 
     /**
      *  CONSTRUCTOR
@@ -29,7 +29,7 @@ public class Vehiculo {
      * @param propietario
      * @param telefono
      */
-    public Vehiculo(String matricula, String marca, String modelo, String descripcion, float presupuesto, String propietario, int telefono) {
+    public Vehiculo(String matricula, String marca, String modelo, String descripcion, float presupuesto, String propietario, String telefono) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -86,11 +86,11 @@ public class Vehiculo {
         this.propietario = propietario;
     }
     
-    public long getTelefono(){
+    public String getTelefono(){
         return telefono;
     }
     
-    public void setTelefono(long telefono){
+    public void setTelefono(String telefono){
         this.telefono = telefono;
     }
     
