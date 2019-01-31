@@ -23,7 +23,7 @@ public class Alquiler {
 
     public Alquiler(Cliente cliente, Vehiculo vehiculo) {
         this.FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy");
-        this.PRECIO_DIA = 5.5;
+        this.PRECIO_DIA = 30;
         this.MILISEGUNDOS_DIA = (int) System.currentTimeMillis();
         this.Fecha = new Date();
         this.dias = 0;
