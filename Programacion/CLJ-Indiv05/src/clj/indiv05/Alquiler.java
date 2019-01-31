@@ -6,9 +6,7 @@
 package clj.indiv05;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  *
@@ -50,7 +48,18 @@ public class Alquiler {
         return dias;
     }
     
+    public double precioAlquiler() {
+        return 0;
+    }
+    
+    // diferencia dias
+    
     public void cerrar() {
         
+    }
+
+    @Override
+    public String toString() {
+        return "Alquiler{" + "FORMATO_FECHA=" + FORMATO_FECHA + ", PRECIO_DIA=" + PRECIO_DIA + ", MILISEGUNDOS_DIA=" + MILISEGUNDOS_DIA + ", Fecha=" + Fecha + ", dias=" + dias + '}';
     }
 }
