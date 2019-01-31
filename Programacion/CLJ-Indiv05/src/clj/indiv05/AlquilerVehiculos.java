@@ -5,6 +5,7 @@
  */
 package clj.indiv05;
 
+
 /**
  *
  * @author 0101001011
@@ -27,7 +28,12 @@ public class AlquilerVehiculos {
      */
     public static void main(String[] args) {
         ES ES = new ES();
-        System.out.println(ES.leerEntero("holi caracoli"));
+        Cliente[] Cliente = new Cliente[10];
+        Vehiculo[] Vehiculo = new Vehiculo[10];
+        Alquiler Alquiler = new Alquiler(Cliente[0], Vehiculo[0]);
+        //System.out.println(ES.leerEntero("holi caracoli"));
+        Alquiler.
+        
     }
     
     /**

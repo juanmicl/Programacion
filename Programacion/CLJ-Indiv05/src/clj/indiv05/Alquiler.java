@@ -7,6 +7,7 @@ package clj.indiv05;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -49,10 +50,17 @@ public class Alquiler {
     }
     
     public double precioAlquiler() {
-        return 0;
+        return diferenciaDias(Fecha);
     }
     
-    // diferencia dias
+    private int diferenciaDias(Date fecha) {
+        TimeUnit tu = TimeUnit.DAYS;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date resultdate = new Date(System.currentTimeMillis());
+        //System.out.println(sdf.format(resultdate));
+        
+        return (int) tu.convert((fecha.getTime() - System.currentTimeMillis()),TimeUnit.MILLISECONDS);
+    }
     
     public void cerrar() {
         

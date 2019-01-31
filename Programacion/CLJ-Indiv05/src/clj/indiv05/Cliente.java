@@ -24,7 +24,8 @@ public class Cliente {
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
     }
-
+    
+    // Constructor copia
     public Cliente(Cliente cliente) {
         dni = cliente.dni;
         nombre = cliente.nombre;

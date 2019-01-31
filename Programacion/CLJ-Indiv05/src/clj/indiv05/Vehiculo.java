@@ -24,7 +24,8 @@ public class Vehiculo {
         this.cilindrada = cilindrada;
         this.disponible = true;
     }
-
+    
+    // Constructor copia
     public Vehiculo(Vehiculo vehiculo){
         matricula = vehiculo.matricula;
         marca = vehiculo.marca;
