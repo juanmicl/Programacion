@@ -12,15 +12,15 @@ package clj.indiv05;
  */
 public class AlquilerVehiculos {
     
-    private static final int MAX_VEHICULOS = 10;
-    private static final int MAX_CLIENTES = 10;
-    private static final int MAX_ALQUILERES = 10;
+    static final int MAX_VEHICULOS = 10;
+    static final int MAX_CLIENTES = 10;
+    static final int MAX_ALQUILERES = 10;
     //private static Vehiculo[] vehiculo;
     
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
-    static Cliente[] clientes = new Cliente[MAX_CLIENTES];
-    Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
+    //static Cliente[] clientes = new Cliente[MAX_CLIENTES];
+    //static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
     Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
     
     private static int posClientes = 0;
@@ -55,13 +55,19 @@ public class AlquilerVehiculos {
                     anadirCliente(ES.leerCadena("Introduce el DNI: "));
                     break;
                 case 2:
-                    getCliente(ES.leerCadena("Introduce el DNI: "));
+                    ES.escribirLn(getCliente(ES.leerCadena("Introduce el DNI: ")).toString());
                     break;
                 case 3:
                     borrarCliente(ES.leerCadena("Introduce el DNI: "));
                     break;
                 case 4:
-                    
+                    anadirVehiculo(ES.leerCadena("Introduce Matrícula: "));
+                    break;
+                case 5:
+                    ES.escribirLn(getVehiculo(ES.leerCadena("Introduce Matrícula: ")).toString());
+                    break;
+                case 6:
+                    borrarVehiculo(ES.leerCadena("Introduce Matrícula: "));
                     break;
                 case 0:
                     salir = true;
@@ -89,12 +95,10 @@ public class AlquilerVehiculos {
                 break;
             }
         }
-        if (esta == true) {
-            ES.escribirLn(clientes[posicion].toString());           
-        } else {
+        if (esta == false) {
             ES.escribirLn("Este DNI no está en el array.");
         }
-        return null;
+        return clientes[posicion]; 
     }
     
     /**
@@ -148,15 +152,65 @@ public class AlquilerVehiculos {
     }
     
     private static Vehiculo getVehiculo(String matricula) {
-        return null;
+        boolean esta = false;
+        int posicion = 0;
+        matricula = Utilidades.comprobarMatricula(matricula);
+        for (int i = 0; i < posVehiculos; i++) {
+            if(vehiculos[i].getMatricula().equals(matricula)) {
+                esta = true;
+                posicion = i;
+                break;
+            }
+        }
+        if (esta == false) {
+            ES.escribirLn("Esta Matricula no está en el array.");
+        }
+        return vehiculos[posicion];
     }
     
     private static void anadirVehiculo(String matricula) {
-        
+        boolean esta = false;
+        matricula = Utilidades.comprobarMatricula(matricula);
+        if (posVehiculos < MAX_CLIENTES) {
+            for (int i = 0; i < posVehiculos; i++) {
+                if(vehiculos[i].getMatricula().equals(matricula)) {
+                    esta = true;
+                    break;
+                }
+            }
+            if (esta == false) {
+                // Introducimos Vehiculo
+                vehiculos[posVehiculos] = new Vehiculo(
+                    matricula,
+                    ES.leerCadena("Introducir Marca: "),
+                    ES.leerCadena("Introducir Modelo: "),
+                    ES.leerEntero("Intrducir Cilindrada: ")
+                );
+                posVehiculos++;
+            } else {
+                ES.escribirLn("Esta Matricula ya está en el array.");
+            }     
+        } else {
+            ES.escribirLn("No se pueden añadir más vehiculos, array completo.");
+        }
     }
     
     private static void borrarVehiculo(String matricula) {
-        
+        boolean esta = false;
+        int posicion = 0;
+        matricula = Utilidades.comprobarMatricula(matricula);
+        for (int i = 0; i < posVehiculos; i++) {
+            if(vehiculos[i].getMatricula().equals(matricula)) {
+                esta = true;
+                posicion = i;
+                break;
+            }
+        }
+        if (esta == true) {
+            vehiculos[posicion] = null;
+        } else {
+            ES.escribirLn("Esta Matrícula no está en el array.");
+        }
     }
     
     private static void nuevoAlquiler(Cliente cliente, Vehiculo vehiculo) {

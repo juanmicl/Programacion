@@ -20,7 +20,10 @@ public class Alquiler {
     private final int MILISEGUNDOS_DIA;
     public Date Fecha;
     public int dias;
-
+    
+    Vehiculo[] vehiculos = new Vehiculo[AlquilerVehiculos.MAX_VEHICULOS];
+    Cliente[] clientes = new Cliente[AlquilerVehiculos.MAX_CLIENTES];
+    
     public Alquiler(Cliente cliente, Vehiculo vehiculo) {
         this.FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy");
         this.PRECIO_DIA = 30;
@@ -28,7 +31,7 @@ public class Alquiler {
         this.Fecha = new Date();
         this.dias = 0;
     }
-
+    
     public SimpleDateFormat getFORMATO_FECHA() {
         return FORMATO_FECHA;
     }
@@ -50,20 +53,22 @@ public class Alquiler {
     }
     
     public double precioAlquiler() {
-        return diferenciaDias(Fecha);
+        return (diferenciaDias(Fecha));
     }
     
     private int diferenciaDias(Date fecha) {
-        TimeUnit tu = TimeUnit.DAYS;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date resultdate = new Date(System.currentTimeMillis());
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //Date resultdate = new Date(System.currentTimeMillis());
         //System.out.println(sdf.format(resultdate));
-        
+        TimeUnit tu = TimeUnit.DAYS;
         return (int) tu.convert((fecha.getTime() - System.currentTimeMillis()),TimeUnit.MILLISECONDS);
     }
     
     public void cerrar() {
-        
+        dias = diferenciaDias(Fecha);
+        if (dias == 0) {
+            dias = 1;
+        }
     }
 
     @Override
