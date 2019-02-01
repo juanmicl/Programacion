@@ -12,16 +12,15 @@ package clj.indiv05;
  */
 public class AlquilerVehiculos {
     
-    static final int MAX_VEHICULOS = 10;
-    static final int MAX_CLIENTES = 10;
-    static final int MAX_ALQUILERES = 10;
-    //private static Vehiculo[] vehiculo;
+    static final int MAX_VEHICULOS = 50;
+    static final int MAX_CLIENTES = 50;
+    static final int MAX_ALQUILERES = 50;
     
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
-    //static Cliente[] clientes = new Cliente[MAX_CLIENTES];
-    //static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
-    Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
+    private static Cliente[] clientes = new Cliente[MAX_CLIENTES];
+    private static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
+    private static Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
     
     private static int posClientes = 0;
     private static int posVehiculos = 0;
@@ -55,6 +54,13 @@ public class AlquilerVehiculos {
                     anadirCliente(ES.leerCadena("Introduce el DNI: "));
                     break;
                 case 2:
+                    Cliente cliente;
+                    cliente = getCliente(ES.leerCadena("Introduce el DNI: "));
+                    if (cliente != null) {
+                        cliente.toString();
+                    } else {
+                        ES.escribirLn("Este DNI no está en el array.");
+                    }
                     ES.escribirLn(getCliente(ES.leerCadena("Introduce el DNI: ")).toString());
                     break;
                 case 3:
@@ -64,7 +70,13 @@ public class AlquilerVehiculos {
                     anadirVehiculo(ES.leerCadena("Introduce Matrícula: "));
                     break;
                 case 5:
-                    ES.escribirLn(getVehiculo(ES.leerCadena("Introduce Matrícula: ")).toString());
+                    Vehiculo vehiculo;
+                    vehiculo = getVehiculo(ES.leerCadena("Introduce Matrícula: "));
+                    if (vehiculo != null) {
+                        vehiculo.toString();
+                    } else {
+                        ES.escribirLn("Esta Matrícula no está en el array.");
+                    }
                     break;
                 case 6:
                     borrarVehiculo(ES.leerCadena("Introduce Matrícula: "));
@@ -96,7 +108,7 @@ public class AlquilerVehiculos {
             }
         }
         if (esta == false) {
-            ES.escribirLn("Este DNI no está en el array.");
+            return null;
         }
         return clientes[posicion]; 
     }
@@ -164,6 +176,7 @@ public class AlquilerVehiculos {
         }
         if (esta == false) {
             ES.escribirLn("Esta Matricula no está en el array.");
+            return null;
         }
         return vehiculos[posicion];
     }

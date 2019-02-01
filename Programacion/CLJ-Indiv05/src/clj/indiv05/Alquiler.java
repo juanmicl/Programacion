@@ -18,11 +18,11 @@ public class Alquiler {
     private final SimpleDateFormat FORMATO_FECHA;
     private final double PRECIO_DIA;
     private final int MILISEGUNDOS_DIA;
-    public Date Fecha;
-    public int dias;
+    private Date Fecha;
+    private int dias;
     
-    Vehiculo[] vehiculos = new Vehiculo[AlquilerVehiculos.MAX_VEHICULOS];
-    Cliente[] clientes = new Cliente[AlquilerVehiculos.MAX_CLIENTES];
+    private Cliente cliente; // Esto no salía en el diagrama, https://i.imgur.com/sMyOb6C.png
+    private Vehiculo vehiculo; // Esto no salía en el diagrama, https://i.imgur.com/sMyOb6C.png
     
     public Alquiler(Cliente cliente, Vehiculo vehiculo) {
         this.FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy");
@@ -30,6 +30,9 @@ public class Alquiler {
         this.MILISEGUNDOS_DIA = (int) System.currentTimeMillis();
         this.Fecha = new Date();
         this.dias = 0;
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        vehiculo.setDisponible(false);
     }
     
     public SimpleDateFormat getFORMATO_FECHA() {
@@ -53,7 +56,7 @@ public class Alquiler {
     }
     
     public double precioAlquiler() {
-        return (diferenciaDias(Fecha));
+        return (PRECIO_DIA * diferenciaDias(Fecha) + vehiculo.getCilindrada() / 100);
     }
     
     private int diferenciaDias(Date fecha) {
@@ -69,6 +72,7 @@ public class Alquiler {
         if (dias == 0) {
             dias = 1;
         }
+        vehiculo.setDisponible(true);
     }
 
     @Override
