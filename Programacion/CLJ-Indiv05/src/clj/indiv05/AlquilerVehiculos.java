@@ -40,7 +40,7 @@ public class AlquilerVehiculos {
             System.out.println("======== MENU ========");
             System.out.println(
                 "1. Añadir Cliente\n"
-                + "2. Ver Cliente\n"
+                + "2. Listar Clientes\n"
                 + "3. Borrar Cliente\n"
                 + "4. Añadir Vehículo\n"
                 + "5. Ver Vehículo.\n"
@@ -54,14 +54,15 @@ public class AlquilerVehiculos {
                     anadirCliente(ES.leerCadena("Introduce el DNI: "));
                     break;
                 case 2:
-                    Cliente cliente;
-                    cliente = getCliente(ES.leerCadena("Introduce el DNI: "));
-                    if (cliente != null) {
-                        cliente.toString();
+                    if (posClientes != 0) {
+                        for (int i = 0; i < posClientes; i++) {
+                            clientes[i].toString();
+                            ES.escribirLn("----------------------");
+                        }
                     } else {
-                        ES.escribirLn("Este DNI no está en el array.");
+                        ES.escribirLn("Todavía no se ha introducido ningún cliente en el array.");
                     }
-                    ES.escribirLn(getCliente(ES.leerCadena("Introduce el DNI: ")).toString());
+                    
                     break;
                 case 3:
                     borrarCliente(ES.leerCadena("Introduce el DNI: "));
@@ -158,6 +159,7 @@ public class AlquilerVehiculos {
         }
         if (esta == true) {
             clientes[posicion] = null;
+            posClientes--;
         } else {
             ES.escribirLn("Este DNI no está en el array.");
         }
@@ -221,17 +223,26 @@ public class AlquilerVehiculos {
         }
         if (esta == true) {
             vehiculos[posicion] = null;
+            posVehiculos--;
         } else {
             ES.escribirLn("Esta Matrícula no está en el array.");
         }
     }
     
     private static void nuevoAlquiler(Cliente cliente, Vehiculo vehiculo) {
-        
+        if (vehiculo.isDisponible() == true) {
+            alquileres[posAlquileres] = new Alquiler(cliente, vehiculo);
+            posAlquileres++;
+            ES.escribirLn("Alquiler creado correctamente.");
+        } else {
+            ES.escribirLn("Este vehículo no está disponible.");
+        }
     }
     
     private static void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
         
+        vehiculo.setDisponible(true);
+        posAlquileres--;
     }
     
 }
