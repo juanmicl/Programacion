@@ -37,14 +37,16 @@ public class AlquilerVehiculos {
         boolean salir = false;
 
         while (salir == false) {
-            System.out.println("======== MENU ========");
-            System.out.println(
+            ES.escribirLn("======== MENU ========");
+            ES.escribirLn(
                 "1. Añadir Cliente\n"
                 + "2. Listar Clientes\n"
                 + "3. Borrar Cliente\n"
                 + "4. Añadir Vehículo\n"
-                + "5. Ver Vehículo.\n"
+                + "5. Listar Vehículos.\n"
                 + "6. Borrar Vehículo\n"
+                + "7. Añadir Alquiler\n"
+                + "8 Cerrar Alquiler\n"
                 + "0. Salir"
             );
             opcion = ES.leerEntero("Introduce una opción: ");
@@ -71,16 +73,24 @@ public class AlquilerVehiculos {
                     anadirVehiculo(ES.leerCadena("Introduce Matrícula: "));
                     break;
                 case 5:
-                    Vehiculo vehiculo;
-                    vehiculo = getVehiculo(ES.leerCadena("Introduce Matrícula: "));
-                    if (vehiculo != null) {
-                        vehiculo.toString();
+                    if (posVehiculos != 0) {
+                        for (int i = 0; i < posVehiculos; i++) {
+                            vehiculos[i].toString();
+                            ES.escribirLn("----------------------");
+                        }
                     } else {
-                        ES.escribirLn("Esta Matrícula no está en el array.");
+                        ES.escribirLn("Todavía no se ha introducido ningún vehículo en el array.");
                     }
                     break;
                 case 6:
                     borrarVehiculo(ES.leerCadena("Introduce Matrícula: "));
+                    break;
+                case 7:
+                    nuevoAlquiler(
+                        getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
+                        getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
+                    );
+                    
                     break;
                 case 0:
                     salir = true;
@@ -119,23 +129,18 @@ public class AlquilerVehiculos {
      * @param dni 
      */
     private static void anadirCliente(String dni) {
-        boolean esta = false;
+        Cliente cliente;
         dni = Utilidades.comprobarDni(dni);
         if (posClientes < MAX_CLIENTES) {
-            for (int i = 0; i < posClientes; i++) {
-                if(clientes[i].getDni().equals(dni)) {
-                    esta = true;
-                    break;
-                }
-            }
-            if (esta == false) {
+            cliente = getCliente(dni);
+            if (cliente == null) {
                 // Introducimos cliente
                 clientes[posClientes] = new Cliente(
                     dni,
                     ES.leerCadena("Introducir Nombre: "),
                     ES.leerCadena("Introducir Dirección: "),
                     ES.leerCadena("Intrducir Localidad: "),
-                    ES.leerCadena("Introducir Codigo Postal")
+                    Utilidades.comprobarCodigoPostal(ES.leerCadena("Introducir Codigo Postal"))
                 );
                 posClientes++;
             } else {
@@ -184,16 +189,11 @@ public class AlquilerVehiculos {
     }
     
     private static void anadirVehiculo(String matricula) {
-        boolean esta = false;
+        Vehiculo vehiculo;
         matricula = Utilidades.comprobarMatricula(matricula);
         if (posVehiculos < MAX_CLIENTES) {
-            for (int i = 0; i < posVehiculos; i++) {
-                if(vehiculos[i].getMatricula().equals(matricula)) {
-                    esta = true;
-                    break;
-                }
-            }
-            if (esta == false) {
+            vehiculo = getVehiculo(matricula);
+            if (vehiculo == null) {
                 // Introducimos Vehiculo
                 vehiculos[posVehiculos] = new Vehiculo(
                     matricula,
