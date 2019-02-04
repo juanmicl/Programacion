@@ -90,7 +90,6 @@ public class AlquilerVehiculos {
                         getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
                         getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
                     );
-                    
                     break;
                 case 0:
                     salir = true;
