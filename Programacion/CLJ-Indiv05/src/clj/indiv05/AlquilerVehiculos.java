@@ -58,7 +58,7 @@ public class AlquilerVehiculos {
                 case 2:
                     if (posClientes != 0) {
                         for (int i = 0; i < posClientes; i++) {
-                            clientes[i].toString();
+                            ES.escribirLn(clientes[i].toString());
                             ES.escribirLn("----------------------");
                         }
                     } else {
@@ -75,7 +75,7 @@ public class AlquilerVehiculos {
                 case 5:
                     if (posVehiculos != 0) {
                         for (int i = 0; i < posVehiculos; i++) {
-                            vehiculos[i].toString();
+                            ES.escribirLn(vehiculos[i].toString());
                             ES.escribirLn("----------------------");
                         }
                     } else {
@@ -87,6 +87,12 @@ public class AlquilerVehiculos {
                     break;
                 case 7:
                     nuevoAlquiler(
+                        getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
+                        getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
+                    );
+                    break;
+                case 8:
+                    cerrarAlquiler(
                         getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
                         getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
                     );
@@ -181,7 +187,7 @@ public class AlquilerVehiculos {
             }
         }
         if (esta == false) {
-            ES.escribirLn("Esta Matricula no está en el array.");
+            //ES.escribirLn("Esta Matricula no está en el array.");
             return null;
         }
         return vehiculos[posicion];
@@ -239,8 +245,10 @@ public class AlquilerVehiculos {
     }
     
     private static void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
-        
-        vehiculo.setDisponible(true);
+        if (cliente.equals(alquileres[0])) {
+            ES.escribirLn("funciona");
+        }
+        //vehiculo.setDisponible(true);
         posAlquileres--;
     }
     
