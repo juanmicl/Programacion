@@ -5,7 +5,6 @@
  */
 package clj.indiv05;
 
-
 /**
  *
  * @author 0101001011
@@ -245,7 +244,7 @@ public class AlquilerVehiculos {
     }
     
     private static void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
-        if (cliente.equals(alquileres[0])) {
+        if (Alquiler.equals(alquileres[0])) {
             ES.escribirLn("funciona");
         }
         //vehiculo.setDisponible(true);
