@@ -71,11 +71,12 @@ public class Algoritmos {
     
     public static double ec2grado(int a, int b, int c, int x) throws IOException {
         int d;
-        double x1 = 0;
+        double x1;
         double x2 = 0;
         d = (int) (Math.pow(b,2)-4*a*c);
         if (d<0) {
                 System.out.println("La ecuación no tiene soluciones reales");
+                return 0;
         } else {
                 if (d==0) {
                         x1 = -b/(2*a);

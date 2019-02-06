@@ -5,7 +5,6 @@
  */
 package ed03;
 import java.io.*;
-import java.math.*;
 
 /**
  *
@@ -43,29 +42,27 @@ public class ED03 {
      * @throws IOException
      */
     public static void main(String args[]) throws IOException {
-        int num1;
-        int num2;
         int opcion;
         opcion = menu();
         while ((opcion != 7)) {
             switch (opcion) {
                 case 1:
-                    Algoritmos.tetraedro(4);
+                    System.out.println(Algoritmos.tetraedro(4));
                     break;
                 case 2:
-                    Algoritmos.cubo(4);
+                    System.out.println(Algoritmos.cubo(4));
                     break;
                 case 3:
-                    Algoritmos.octaedro(4);
+                    System.out.println(Algoritmos.octaedro(4));
                     break;
                 case 4:
-                    Algoritmos.dodecaedro(4);
+                    System.out.println(Algoritmos.dodecaedro(4));
                     break;
                 case 5:
-                    Algoritmos.icosaedro(4);
+                    System.out.println(Algoritmos.icosaedro(4));
                     break;
                 case 6:
-                    Algoritmos.ec2grado(1,-1,3,1);
+                    System.out.println(Algoritmos.ec2grado(1,-1,3,1));
                     break;
                 case 7:
                     System.out.println("Saliendo del programa...");
