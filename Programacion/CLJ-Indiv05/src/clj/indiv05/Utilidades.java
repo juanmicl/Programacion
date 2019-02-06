@@ -18,6 +18,7 @@ public class Utilidades {
     }
     
     public String comprobarMatricula(String matricula) {
+        matricula = matricula.toUpperCase();
         while (!matricula.matches("^[0-9]{4}[A-Z]{3}$") && !matricula.matches("^[A-Z]{2}[0-9]{4}[A-Z]{2}$")) {
             System.out.println("Formato Matricula incorrecto.\n"
                     + "Insertar Matricula: ");
@@ -27,6 +28,7 @@ public class Utilidades {
     }
     
     public String comprobarDni(String dni) {
+        dni = dni.toUpperCase();
         while (!dni.matches("^[0-9]{8}[A-Z]$")) {
             System.out.println("Formato DNI incorrecto.\n"
                     + "Insertar DNI: ");

@@ -60,23 +60,4 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", direccion=" + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + '}';
     }
-    
-    /**
-     *
-     * @param obj
-     * @return
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == null) return false;
-        else if (!(obj instanceof Cliente)) return false;
-        return this.cliente == obj;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.cliente);
-        return hash;
-    }
 }

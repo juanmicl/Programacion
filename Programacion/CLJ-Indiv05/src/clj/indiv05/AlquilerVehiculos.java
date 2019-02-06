@@ -244,8 +244,30 @@ public class AlquilerVehiculos {
     }
     
     private static void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
-        if (Alquiler.equals(alquileres[0])) {
-            ES.escribirLn("funciona");
+        boolean coincide = false;
+        int alquilerPos = 0;
+        String matricula = vehiculo.getMatricula();
+        String dni = cliente.getDni();
+        String dni2;
+        
+        for (int i = 0; i < posAlquileres; i++) {
+            if (matricula.equals(alquileres[i].getVehiculo().getMatricula())) {
+                alquilerPos = i;
+            }
+        }
+        
+        for (int i = 0; i < posAlquileres; i++) {
+            if (dni.equals(alquileres[i].getCliente().getDni())) {
+                if (alquileres[i].getCliente().getDni().equals(alquileres[alquilerPos].getCliente().getDni())) {
+                   coincide = true;
+                }
+            }
+        }
+        
+        if (coincide == true) {
+            
+        } else {
+            ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
         }
         //vehiculo.setDisponible(true);
         posAlquileres--;

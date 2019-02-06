@@ -35,6 +35,14 @@ public class Alquiler {
         this.vehiculo = vehiculo;
         vehiculo.setDisponible(false);
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
     
     public SimpleDateFormat getFORMATO_FECHA() {
         return FORMATO_FECHA;
@@ -79,24 +87,5 @@ public class Alquiler {
     @Override
     public String toString() {
         return "Alquiler{" + "FORMATO_FECHA=" + FORMATO_FECHA + ", PRECIO_DIA=" + PRECIO_DIA + ", MILISEGUNDOS_DIA=" + MILISEGUNDOS_DIA + ", Fecha=" + Fecha + ", dias=" + dias + '}';
-    }
-    
-    /**
-     *
-     * @param obj
-     * @return
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == null) return false;
-        else if (!(obj instanceof Alquiler)) return false;
-        return this.cliente == obj;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.cliente);
-        return hash;
     }
 }
