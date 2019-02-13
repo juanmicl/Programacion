@@ -167,8 +167,7 @@ public class AlquilerVehiculos {
             }
         }
         if (esta == true) {
-            clientes[posicion] = null;
-            posClientes--;
+            desplazarClientes(posicion);
         } else {
             ES.escribirLn("Este DNI no está en el array.");
         }
@@ -226,51 +225,87 @@ public class AlquilerVehiculos {
             }
         }
         if (esta == true) {
-            vehiculos[posicion] = null;
-            posVehiculos--;
+            desplazarVehiculos(posicion);
         } else {
             ES.escribirLn("Esta Matrícula no está en el array.");
         }
     }
     
     private static void nuevoAlquiler(Cliente cliente, Vehiculo vehiculo) {
-        if (vehiculo.isDisponible() == true) {
-            alquileres[posAlquileres] = new Alquiler(cliente, vehiculo);
-            posAlquileres++;
-            ES.escribirLn("Alquiler creado correctamente.");
-        } else {
-            ES.escribirLn("Este vehículo no está disponible.");
+        try {
+            if (vehiculo.isDisponible() == true) {
+                alquileres[posAlquileres] = new Alquiler(cliente, vehiculo);
+                posAlquileres++;
+                ES.escribirLn("Alquiler creado correctamente.");
+            } else {
+                ES.escribirLn("Este vehículo no está disponible.");
+            }
+        } catch (Exception e) {
+            ES.escribirLn("Datos incorrectos.");
         }
     }
     
     private static void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
         boolean coincide = false;
         int alquilerPos = 0;
-        String matricula = vehiculo.getMatricula();
-        String dni = cliente.getDni();
-        String dni2;
         
-        for (int i = 0; i < posAlquileres; i++) {
-            if (matricula.equals(alquileres[i].getVehiculo().getMatricula())) {
-                alquilerPos = i;
-            }
-        }
-        
-        for (int i = 0; i < posAlquileres; i++) {
-            if (dni.equals(alquileres[i].getCliente().getDni())) {
-                if (alquileres[i].getCliente().getDni().equals(alquileres[alquilerPos].getCliente().getDni())) {
-                   coincide = true;
+        try {
+            
+            String matricula = vehiculo.getMatricula();
+            String dni = cliente.getDni();
+            
+            for (int i = 0; i < posAlquileres; i++) {
+                if (matricula.equals(alquileres[i].getVehiculo().getMatricula())) {
+                    alquilerPos = i;
                 }
             }
+
+            for (int i = 0; i < posAlquileres; i++) {
+                if (dni.equals(alquileres[i].getCliente().getDni())) {
+                    if (alquileres[i].getCliente().getDni().equals(alquileres[alquilerPos].getCliente().getDni())) {
+                       coincide = true;
+                    }
+                }
+            }
+
+            if (coincide == true) {
+                ES.escribirLn(alquileres[alquilerPos].getCliente().getDni());
+                desplazarAlquileres(alquilerPos);
+                vehiculo.setDisponible(true);
+            } else {
+                ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
+            }
+        } catch (Exception e) {
+            ES.escribirLn("Datos incorrectos.");
         }
         
-        if (coincide == true) {
-            
-        } else {
-            ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
+    }
+    
+    private static void desplazarClientes(int posicion){
+        for(int i = posicion; i < clientes.length-1; i++){
+            clientes[i] = clientes[i+1];
+            if(clientes[posicion] == null)
+                break;
         }
-        //vehiculo.setDisponible(true);
-        posAlquileres--;
+        clientes[clientes.length-1] = null;
+    }
+    
+    private static void desplazarVehiculos(int posicion){
+        for(int i = posicion; i < vehiculos.length-1; i++){
+            vehiculos[i] = vehiculos[i+1];
+            if(vehiculos[posicion] == null)
+                break;
+        }
+        vehiculos[vehiculos.length-1] = null;
+    }
+    
+    private static void desplazarAlquileres(int posicion){
+        for(int i = posicion; i < alquileres.length-1; i++){
+            alquileres[i] = alquileres[i+1];
+            if(alquileres[posicion] == null)
+                break;
+        }
+        alquileres[alquileres.length-1] = null;
     }
     
 }

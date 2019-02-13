@@ -1,0 +1,9 @@
+@startuml
+annotation java.lang.Override
+class ReparacionesExpress.ClasePrincipal
+class ReparacionesExpress.ES
+class ReparacionesExpress.Utilidades
+class ReparacionesExpress.Vehiculo
+class Teoria.Ejercicios
+ReparacionesExpress.Vehiculo ..> java.lang.Override
+@enduml
