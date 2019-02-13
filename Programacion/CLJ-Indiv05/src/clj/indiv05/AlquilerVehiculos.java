@@ -168,6 +168,7 @@ public class AlquilerVehiculos {
         }
         if (esta == true) {
             desplazarClientes(posicion);
+            posClientes--;
         } else {
             ES.escribirLn("Este DNI no está en el array.");
         }
@@ -226,6 +227,7 @@ public class AlquilerVehiculos {
         }
         if (esta == true) {
             desplazarVehiculos(posicion);
+            posVehiculos--;
         } else {
             ES.escribirLn("Esta Matrícula no está en el array.");
         }
@@ -272,6 +274,7 @@ public class AlquilerVehiculos {
                 ES.escribirLn(alquileres[alquilerPos].getCliente().getDni());
                 desplazarAlquileres(alquilerPos);
                 vehiculo.setDisponible(true);
+                posAlquileres--;
             } else {
                 ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
             }
