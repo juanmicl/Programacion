@@ -9,6 +9,33 @@ package clj.indiv06;
  *
  * @author 0101001011
  */
-public class Mercancias {
+public class Mercancias extends Vehiculo {
     
+    private int pma;
+    private int volumen;
+
+    public Mercancias(int pma, int volumen, String matricula, String marca, String modelo, int cilindrada) {
+        super(matricula, marca, modelo, cilindrada);
+        this.pma = pma;
+        this.volumen = volumen;
+    }
+
+    public Mercancias(int pma, int volumen, Vehiculo vehiculo) {
+        super(vehiculo);
+        this.pma = pma;
+        this.volumen = volumen;
+    }
+
+    public int getPma() {
+        return pma;
+    }
+
+    public int getVolumen() {
+        return volumen;
+    }
+
+    @Override
+    public String toString() {
+        return "Mercancias{" + "pma=" + pma + ", volumen=" + volumen + '}';
+    }    
 }
