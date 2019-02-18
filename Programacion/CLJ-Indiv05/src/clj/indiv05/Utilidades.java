@@ -17,9 +17,28 @@ public class Utilidades {
     public Utilidades() {
     }
     
+    /*
+    public Boolean comprobarMatricula(String matricula) {
+        matricula = matricula.toUpperCase();
+        return matricula.matches("^[0-9]{4}[B-DF-HJ-NP-TV-Z]{3}$") || matricula.matches("^[A-Z]{2}[0-9]{4}[A-Z]{2}$");
+    }
+    
+    public Boolean comprobarDni(String dni) {
+        dni = dni.toUpperCase();
+        return dni.matches("^[0-9]{8}[A-Z]$");
+    }
+    
+    public Boolean comprobarCodigoPostal(String cp) {
+        return cp.matches("^[01-52]{2}[0-9]{3}$");
+    }
+    
+    public Boolean comprobarTelefonoEsp(String telefono) {
+        return telefono.matches("^34[6789][0-9]{8}$");
+    } */
+    
     public String comprobarMatricula(String matricula) {
         matricula = matricula.toUpperCase();
-        while (!matricula.matches("^[0-9]{4}[A-Z]{3}$") && !matricula.matches("^[A-Z]{2}[0-9]{4}[A-Z]{2}$")) {
+        while (!matricula.matches("^[0-9]{4}[B-DF-HJ-NP-TV-Z]{3}$") && !matricula.matches("^[A-Z]{2}[0-9]{4}[A-Z]{2}$")) {
             System.out.println("Formato Matricula incorrecto.\n"
                     + "Insertar Matricula: ");
             matricula = sc.next();
@@ -38,7 +57,7 @@ public class Utilidades {
     }
     
     public String comprobarCodigoPostal(String cp) {
-        while (!cp.matches("^[0-9]{5}$")) {
+        while (!cp.matches("^[01-52]{2}[0-9]{3}$")) {
             System.out.println("Formato Código Postal incorrecto.\n"
                     + "Insertar Código Postal: ");
             cp = sc.next();
