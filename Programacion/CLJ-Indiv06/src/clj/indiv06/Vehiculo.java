@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clj.indiv05;
+package clj.indiv06;
 
 /**
  *
  * @author juanmi
  */
-public class Vehiculo {
+public abstract class Vehiculo {
     
     private String matricula;
     private String marca;
