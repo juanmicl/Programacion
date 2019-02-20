@@ -9,7 +9,9 @@ package clj.presen06;
  *
  * @author juanmi
  */
-public class CLJPresen06 {
+public class Principal {
+    
+    private static final Animal[] animal = new Animal[10];
 
     /**
      * @param args the command line arguments
