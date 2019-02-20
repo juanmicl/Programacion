@@ -69,6 +69,15 @@ public class Algoritmos {
 
     }
     
+    /**
+     *
+     * @param a
+     * @param b
+     * @param c
+     * @param x
+     * @return
+     * @throws IOException
+     */
     public static double ec2grado(int a, int b, int c, int x) throws IOException {
         int d;
         double x1;
