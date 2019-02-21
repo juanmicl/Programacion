@@ -16,8 +16,8 @@ public class Deportivo extends Turismo {
     private boolean descapotable;
     private CajaCambios cambio;
 
-    public Deportivo(boolean descapotable, CajaCambios cambio, String matricula, String marca, String modelo, int cilindrada) {
-        super(matricula, marca, modelo, cilindrada);
+    public Deportivo(boolean descapotable, CajaCambios cambio, int numeroPuertas, Enumerados.TipoCombustible combustible, String matricula, String marca, String modelo, int cilindrada) {
+        super(numeroPuertas, combustible, matricula, marca, modelo, cilindrada);
         this.descapotable = descapotable;
         this.cambio = cambio;
     }
@@ -37,6 +37,6 @@ public class Deportivo extends Turismo {
     
     @Override
     public String toString() {
-        return "Deportivo{" + "descapotable=" + descapotable + ", cambio=" + cambio + '}';
+        return "descapotable: " + descapotable + ", cambio: " + cambio + ", numeroPuertas: "+getNumeroPuertas()+", combustible: "+combustible+", matricula: "+getMatricula()+", marca: "+getMarca()+", modelo: "+getModelo()+", cilindrada: "+getCilindrada();
     }
 }
