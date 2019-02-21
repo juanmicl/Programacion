@@ -5,6 +5,8 @@
  */
 package clj.indiv06;
 
+import clj.indiv06.Enumerados.CajaCambios;
+
 /**
  *
  * @author 0101001011

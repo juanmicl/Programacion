@@ -5,16 +5,21 @@
  */
 package clj.indiv06;
 
+import clj.indiv06.Enumerados.TipoCombustible;
+
 /**
  *
  * @author 0101001011
  */
 public abstract class Turismo extends Vehiculo {
     
-    public int numeroPuertas;
+    protected int numeroPuertas;
+    protected TipoCombustible combustible;
 
-    public Turismo(String matricula, String marca, String modelo, int cilindrada) {
+    public Turismo(int numeroPuertas, TipoCombustible combustible, String matricula, String marca, String modelo, int cilindrada) {
         super(matricula, marca, modelo, cilindrada);
+        this.numeroPuertas = numeroPuertas;
+        this.combustible = combustible;
     }
 
     // falta por mostrar datos Vehiculo
