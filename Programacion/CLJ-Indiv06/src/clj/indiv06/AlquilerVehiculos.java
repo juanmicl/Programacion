@@ -5,6 +5,8 @@
  */
 package clj.indiv06;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 0101001011
@@ -17,13 +19,14 @@ public class AlquilerVehiculos {
     
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
-    private static Cliente[] clientes = new Cliente[MAX_CLIENTES];
-    private static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
-    private static Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
-    
-    private static int posClientes = 0;
-    private static int posVehiculos = 0;
-    private static int posAlquileres = 0;
+    // ARRAY LISTS //
+    private static ArrayList<Cliente> clientes = new ArrayList();
+    private static ArrayList<Vehiculo> vehiculos = new ArrayList();
+    private static ArrayList<Alquiler> alquileres = new ArrayList();
+    // ARRAY LISTS FIN //
+    //private static Cliente[] clientes = new Cliente[MAX_CLIENTES];
+    //private static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
+    //private static Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
     
     public AlquilerVehiculos() {
     }
@@ -34,6 +37,8 @@ public class AlquilerVehiculos {
     public static void main(String[] args) {
         int opcion;
         boolean salir = false;
+        Cliente cliente;
+        Vehiculo vehiculo;
 
         while (salir == false) {
             ES.escribirLn("======== MENU ========");
@@ -55,15 +60,14 @@ public class AlquilerVehiculos {
                     anadirCliente(ES.leerCadena("Introduce el DNI: "));
                     break;
                 case 2:
-                    if (posClientes != 0) {
-                        for (int i = 0; i < posClientes; i++) {
-                            ES.escribirLn(clientes[i].toString());
+                    if (!clientes.isEmpty()) {
+                        for(int i = 0; i< clientes.size(); i++) {
+                            ES.escribirLn(clientes.get(i).toString());
                             ES.escribirLn("----------------------");
                         }
                     } else {
                         ES.escribirLn("Todavía no se ha introducido ningún cliente en el array.");
                     }
-                    
                     break;
                 case 3:
                     borrarCliente(ES.leerCadena("Introduce el DNI: "));
@@ -72,9 +76,9 @@ public class AlquilerVehiculos {
                     anadirVehiculo(ES.leerCadena("Introduce Matrícula: "));
                     break;
                 case 5:
-                    if (posVehiculos != 0) {
-                        for (int i = 0; i < posVehiculos; i++) {
-                            ES.escribirLn(vehiculos[i].toString());
+                    if (!vehiculos.isEmpty()) {
+                        for(int i = 0; i< vehiculos.size(); i++) {
+                            ES.escribirLn(vehiculos.get(i).toString());
                             ES.escribirLn("----------------------");
                         }
                     } else {
@@ -85,16 +89,22 @@ public class AlquilerVehiculos {
                     borrarVehiculo(ES.leerCadena("Introduce Matrícula: "));
                     break;
                 case 7:
-                    nuevoAlquiler(
-                        getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
-                        getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
-                    );
+                    cliente = getCliente(ES.leerCadena("Introduce DNI del cliente: "));
+                    vehiculo = getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "));
+                    if (cliente != null && vehiculo != null) {
+                            nuevoAlquiler(cliente, vehiculo);
+                    } else {
+                        ES.escribirLn("La matrícula o el DNI no se encuentran en el array");
+                    }
                     break;
                 case 8:
-                    cerrarAlquiler(
-                        getCliente(ES.leerCadena("Introduce DNI del cliente: ")),
-                        getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "))
-                    );
+                    cliente = getCliente(ES.leerCadena("Introduce DNI del cliente: "));
+                    vehiculo = getVehiculo(ES.leerCadena("Introduce Matrícula del cliente: "));
+                    if (cliente != null && vehiculo != null) {
+                            cerrarAlquiler(cliente, vehiculo);
+                    } else {
+                        ES.escribirLn("La matrícula o el DNI no se encuentran en el array");
+                    }
                     break;
                 case 0:
                     salir = true;
@@ -115,17 +125,19 @@ public class AlquilerVehiculos {
         boolean esta = false;
         int posicion = 0;
         dni = Utilidades.comprobarDni(dni);
-        for (int i = 0; i < posClientes; i++) {
-            if(clientes[i].getDni().equals(dni)) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if(clientes.get(i).getDni().equalsIgnoreCase(dni)) {
                 esta = true;
                 posicion = i;
                 break;
             }
         }
         if (esta == false) {
+            //ES.escribirLn("Este DNI no está en el array.");
             return null;
+        } else {
+            return clientes.get(posicion);
         }
-        return clientes[posicion]; 
     }
     
     /**
@@ -135,18 +147,17 @@ public class AlquilerVehiculos {
     private static void anadirCliente(String dni) {
         Cliente cliente;
         dni = Utilidades.comprobarDni(dni);
-        if (posClientes < MAX_CLIENTES) {
+        if (clientes.size() < MAX_CLIENTES) {
             cliente = getCliente(dni);
             if (cliente == null) {
                 // Introducimos cliente
-                clientes[posClientes] = new Cliente(
+                clientes.add(new Cliente(
                     dni,
                     ES.leerCadena("Introducir Nombre: "),
                     ES.leerCadena("Introducir Dirección: "),
                     ES.leerCadena("Intrducir Localidad: "),
                     Utilidades.comprobarCodigoPostal(ES.leerCadena("Introducir Codigo Postal"))
-                );
-                posClientes++;
+                ));
             } else {
                 ES.escribirLn("Este DNI ya está en el array.");
             }     
@@ -159,16 +170,15 @@ public class AlquilerVehiculos {
         boolean esta = false;
         int posicion = 0;
         dni = Utilidades.comprobarDni(dni);
-        for (int i = 0; i < posClientes; i++) {
-            if(clientes[i].getDni().equals(dni)) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if(clientes.get(i).getDni().equalsIgnoreCase(dni)) {
                 esta = true;
                 posicion = i;
                 break;
             }
         }
         if (esta == true) {
-            desplazarClientes(posicion);
-            posClientes--;
+            clientes.remove(posicion);
         } else {
             ES.escribirLn("Este DNI no está en el array.");
         }
@@ -178,8 +188,8 @@ public class AlquilerVehiculos {
         boolean esta = false;
         int posicion = 0;
         matricula = Utilidades.comprobarMatricula(matricula);
-        for (int i = 0; i < posVehiculos; i++) {
-            if(vehiculos[i].getMatricula().equals(matricula)) {
+        for (int i = 0; i < vehiculos.size(); i++) {
+            if(vehiculos.get(i).getMatricula().equalsIgnoreCase(matricula)) {
                 esta = true;
                 posicion = i;
                 break;
@@ -188,24 +198,116 @@ public class AlquilerVehiculos {
         if (esta == false) {
             //ES.escribirLn("Esta Matricula no está en el array.");
             return null;
+        } else {
+            return vehiculos.get(posicion);
         }
-        return vehiculos[posicion];
     }
     
     private static void anadirVehiculo(String matricula) {
-        Vehiculo vehiculo;
         matricula = Utilidades.comprobarMatricula(matricula);
-        if (posVehiculos < MAX_CLIENTES) {
-            vehiculo = getVehiculo(matricula);
-            if (vehiculo == null) {
-                // Introducimos Vehiculo
-                vehiculos[posVehiculos] = new Vehiculo(
-                    matricula,
-                    ES.leerCadena("Introducir Marca: "),
-                    ES.leerCadena("Introducir Modelo: "),
-                    ES.leerEntero("Intrducir Cilindrada: ")
-                );
-                posVehiculos++;
+        Enumerados.CajaCambios cajaCambios;
+        Enumerados.TipoCombustible tipoCombustible;
+        Enumerados.Tamanio tamanio;
+        
+        if (vehiculos.size() < MAX_CLIENTES) {
+            if (getVehiculo(matricula) == null) {
+                boolean anadido = false;
+                while (anadido == false) {
+                    int tipoVehiculo = ES.leerEntero(
+                        "Introduce tipo de vehiculo:\n"
+                        + "1. Deportivo\n"
+                        + "2. Familiar\n"
+                        + "3. Furgoneta"
+                    );
+                    switch (tipoVehiculo) {
+                        case 1:
+                            // Introducimos Deportivo
+                            if(ES.leerEntero("Introduce opción:\n1. Automática\n2. Manual",1, 2) == 1) {
+                                cajaCambios = Enumerados.CajaCambios.AUTOMATICA;
+                            } else {
+                                cajaCambios = Enumerados.CajaCambios.MANUAL;
+                            }
+                            while (true) {
+                                ES.escribirLn("Introduce opción:");
+                                for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
+                                    ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
+                                }
+                                try {
+                                    tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
+                                    break;
+                                } catch (Exception e) {
+                                    ES.escribirLn("Elige un número de la lista.");
+                                }
+                            }
+                            vehiculos.add(new Deportivo(
+                                ES.leerBooleano("Descapotable", "Normal"),
+                                cajaCambios,
+                                ES.leerEntero("Introduce nº de puertas", 3, 5),
+                                tipoCombustible,
+                                matricula,
+                                ES.leerCadena("Introduce marca:"),
+                                ES.leerCadena("Introduce modelo:"),
+                                ES.leerEntero("Introduce cilindrada:")
+                            ));
+                            anadido = true;
+                            break;
+                        case 2:
+                            // Introducimos Familiar
+                            while (true) {
+                                ES.escribirLn("Introduce opción:");
+                                for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
+                                    ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
+                                }
+                                try {
+                                    tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
+                                    break;
+                                } catch (Exception e) {
+                                    ES.escribirLn("Elige un número de la lista.");
+                                }
+                            }
+                            vehiculos.add(new Familiar(
+                                ES.leerEntero("Introduce nº plazas:", 4, 7),
+                                ES.leerBooleano("Con silla bebé", "Sin silla bebé"),
+                                ES.leerEntero("Introduce nº de puertas", 3, 10),
+                                tipoCombustible,
+                                matricula,
+                                ES.leerCadena("Introduce marca:"),
+                                ES.leerCadena("Introduce modelo:"),
+                                ES.leerEntero("Introduce cilindrada:")
+                            ));
+                            anadido = true;
+                            break;
+                        case 3:
+                            // Introducimos Furgoneta
+                            while (true) {
+                                ES.escribirLn("Introduce opción:");
+                                for (int i = 0; i < Enumerados.Tamanio.values().length; i++) {
+                                    ES.escribirLn(i+". "+Enumerados.Tamanio.values()[i]);
+                                }
+                                try {
+                                    tamanio = Enumerados.Tamanio.values()[ES.leerEntero()];
+                                    break;
+                                } catch (Exception e) {
+                                    ES.escribirLn("Elige un número de la lista.");
+                                }
+                            }
+                            vehiculos.add(new Furgoneta(
+                                ES.leerBooleano("Refrigerado", "Sin refrigerar"),
+                                tamanio,
+                                ES.leerEntero("Introduce pma:", 1),
+                                ES.leerEntero("Introduce volumen:", 1),
+                                matricula,
+                                ES.leerCadena("Introduce marca:"),
+                                ES.leerCadena("Introduce modelo:"),
+                                ES.leerEntero("Introduce cilindrada:")
+                            ));
+                            anadido = true;
+                            break;
+                        default:
+                            ES.escribirLn("Elige una opción válida.");
+                            break;
+                    }
+                }
             } else {
                 ES.escribirLn("Esta Matricula ya está en el array.");
             }     
@@ -218,16 +320,15 @@ public class AlquilerVehiculos {
         boolean esta = false;
         int posicion = 0;
         matricula = Utilidades.comprobarMatricula(matricula);
-        for (int i = 0; i < posVehiculos; i++) {
-            if(vehiculos[i].getMatricula().equals(matricula)) {
+        for (int i = 0; i < vehiculos.size(); i++) {
+            if(vehiculos.get(i).getMatricula().equalsIgnoreCase(matricula)) {
                 esta = true;
                 posicion = i;
                 break;
             }
         }
         if (esta == true) {
-            desplazarVehiculos(posicion);
-            posVehiculos--;
+            vehiculos.remove(posicion);
         } else {
             ES.escribirLn("Esta Matrícula no está en el array.");
         }
@@ -236,8 +337,7 @@ public class AlquilerVehiculos {
     private static void nuevoAlquiler(Cliente cliente, Vehiculo vehiculo) {
         try {
             if (vehiculo.isDisponible() == true) {
-                alquileres[posAlquileres] = new Alquiler(cliente, vehiculo);
-                posAlquileres++;
+                alquileres.add(new Alquiler(cliente, vehiculo));
                 ES.escribirLn("Alquiler creado correctamente.");
             } else {
                 ES.escribirLn("Este vehículo no está disponible.");
@@ -256,59 +356,29 @@ public class AlquilerVehiculos {
             String matricula = vehiculo.getMatricula();
             String dni = cliente.getDni();
             
-            for (int i = 0; i < posAlquileres; i++) {
-                if (matricula.equals(alquileres[i].getVehiculo().getMatricula())) {
+            for (int i = 0; i < alquileres.size(); i++) {
+                if (matricula.equals(alquileres.get(i).getVehiculo().getMatricula())) {
                     alquilerPos = i;
                 }
             }
 
-            for (int i = 0; i < posAlquileres; i++) {
-                if (dni.equals(alquileres[i].getCliente().getDni())) {
-                    if (alquileres[i].getCliente().getDni().equals(alquileres[alquilerPos].getCliente().getDni())) {
+            for (int i = 0; i < alquileres.size(); i++) {
+                if (dni.equals(alquileres.get(i).getCliente().getDni())) {
+                    if (alquileres.get(i).getCliente().getDni().equals(alquileres.get(alquilerPos).getCliente().getDni())) {
                        coincide = true;
                     }
                 }
             }
 
             if (coincide == true) {
-                ES.escribirLn(alquileres[alquilerPos].getCliente().getDni());
-                desplazarAlquileres(alquilerPos);
+                ES.escribirLn(alquileres.get(alquilerPos).getCliente().getDni());
+                alquileres.remove(alquilerPos);
                 vehiculo.setDisponible(true);
-                posAlquileres--;
             } else {
                 ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
             }
         } catch (Exception e) {
             ES.escribirLn("Datos incorrectos.");
         }
-        
     }
-    
-    private static void desplazarClientes(int posicion){
-        for(int i = posicion; i < clientes.length-1; i++){
-            clientes[i] = clientes[i+1];
-            if(clientes[posicion] == null)
-                break;
-        }
-        clientes[clientes.length-1] = null;
-    }
-    
-    private static void desplazarVehiculos(int posicion){
-        for(int i = posicion; i < vehiculos.length-1; i++){
-            vehiculos[i] = vehiculos[i+1];
-            if(vehiculos[posicion] == null)
-                break;
-        }
-        vehiculos[vehiculos.length-1] = null;
-    }
-    
-    private static void desplazarAlquileres(int posicion){
-        for(int i = posicion; i < alquileres.length-1; i++){
-            alquileres[i] = alquileres[i+1];
-            if(alquileres[posicion] == null)
-                break;
-        }
-        alquileres[alquileres.length-1] = null;
-    }
-    
 }

@@ -63,6 +63,24 @@ public class ES {
     }
     
     /**
+     * Leer entero mostrando un texto y comparamos si es menor que minimo
+     * @param minimo
+     * @param text
+     * @return
+     */
+    public static int leerEntero(String text, int minimo, int maximo) {
+        int numero;
+        while (true) {         
+            numero = leerEntero(text);
+            if (numero >= minimo && numero <= maximo) {
+                return numero;
+            } else {
+                escribirLn("Error: El número debe de ser mayor que " + minimo+" y menor que"+maximo);
+            }
+        }
+    }
+    
+    /**
      *
      * @param text
      * @return
@@ -104,6 +122,22 @@ public class ES {
             }
         }
     }
+   
+    public static boolean leerBooleano(String opc1, String opc2) {
+        int opcion;
+        while (true) {
+            escribirLn("Introduce alguna de las opciones:");
+            escribirLn("1. "+opc1);
+            escribirLn("2. "+opc2);
+            opcion = leerEntero();
+            if (opcion >= 1 && opcion <= 2) {
+                return opcion == 1;
+            } else {
+                escribirLn("Error: Elige una de las opciones listadas.");
+            }
+        }
+    }
+    
 
     /**
      * escribimos string
