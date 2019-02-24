@@ -13,9 +13,9 @@ public class Familiar extends Turismo {
     
     private int numeroPlazas;
     private boolean sillaBebe;
-    
-    public Familiar(int numeroPlazas, boolean sillaBebe, String matricula, String marca, String modelo, int cilindrada) {
-        super(matricula, marca, modelo, cilindrada);
+
+    public Familiar(int numeroPlazas, boolean sillaBebe, int numeroPuertas, Enumerados.TipoCombustible combustible, String matricula, String marca, String modelo, int cilindrada) {
+        super(numeroPuertas, combustible, matricula, marca, modelo, cilindrada);
         this.numeroPlazas = numeroPlazas;
         this.sillaBebe = sillaBebe;
     }
@@ -32,12 +32,16 @@ public class Familiar extends Turismo {
         this.sillaBebe = sillaBebe;
     }
 
+    public Enumerados.TipoCombustible getCombustible() {
+        return combustible;
+    }
+
     public int getNumeroPuertas() {
         return numeroPuertas;
     }
 
     @Override
     public String toString() {
-        return "Familiar{" + "numeroPlazas=" + numeroPlazas + ", sillaBebe=" + sillaBebe + '}';
+        return "numeroPlazas:" + numeroPlazas + ", sillaBebe:" + sillaBebe +", numeroPuertas: "+getNumeroPuertas()+", TipoCombustible: "+getCombustible()+", matricula: "+getMatricula()+", marca: "+getMarca()+", modelo: "+getModelo()+", cilindrada: "+getCilindrada();
     }
 }

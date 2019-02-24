@@ -20,4 +20,17 @@ public class Furgoneta extends Mercancias {
         this.refrigerado = refrigerado;
         this.tamanio = tamanio;
     }
+
+    public boolean isRefrigerado() {
+        return refrigerado;
+    }
+
+    public Tamanio getTamanio() {
+        return tamanio;
+    }
+    
+    @Override
+    public String toString() {
+        return "refrigerado:" + refrigerado + ", tamanio:" + tamanio+", pma: "+getPma()+", volumen: "+getVolumen()+", matricula: "+getMatricula()+", marca: "+getMarca()+", modelo: "+getModelo()+", cilindrada: "+getCilindrada();
+    }
 }

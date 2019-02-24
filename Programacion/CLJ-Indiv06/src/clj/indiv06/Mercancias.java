@@ -36,6 +36,6 @@ public abstract class Mercancias extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Mercancias{" + "pma=" + pma + ", volumen=" + volumen + '}';
+        return "pma:" + pma + ", volumen:" + volumen +", matricula: "+getMatricula()+", marca: "+getMarca()+", modelo: "+getModelo()+", cilindrada: "+getCilindrada();
     }    
 }
