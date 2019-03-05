@@ -30,7 +30,7 @@ public class Icosaedro {
      * @return
      */
     public double volumen() {
-        double resultado = (5/12) * (3 + Math.sqrt(5)) * Math.pow(arista, 3);
+        double resultado = (float)5/12 * (3 + Math.sqrt(5)) * Math.pow(arista, 3);
         return resultado;
     }
 }
