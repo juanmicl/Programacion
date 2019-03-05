@@ -31,7 +31,7 @@ public class Tetraedro {
      * @return
      */
     public double volumen() {
-        double resultado = (Math.sqrt(2) / 12) * Math.pow(arista, 2);
+        double resultado = ((float)Math.sqrt(2) / 12) * Math.pow(arista, 2);
         return resultado;
     }
 }

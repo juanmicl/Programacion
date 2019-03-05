@@ -23,12 +23,10 @@ public class TetraedroTest {
     @Test
     public void testArea() {
         System.out.println("area");
-        Tetraedro instance = null;
-        double expResult = 0.0;
+        Tetraedro instance = new Tetraedro(2);
+        double expResult = 6.92;
         double result = instance.area();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, 0.1);
     }
 
     /**
@@ -37,12 +35,10 @@ public class TetraedroTest {
     @Test
     public void testVolumen() {
         System.out.println("volumen");
-        Tetraedro instance = null;
-        double expResult = 0.0;
+        Tetraedro instance = new Tetraedro(2);
+        double expResult = 0.47;
         double result = instance.volumen();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, 0.1);
     }
     
 }

@@ -30,7 +30,7 @@ public class Octaedro {
      * @return
      */
     public double volumen() {
-        double resultado = (1/3) * Math.sqrt(2) * Math.pow(arista, 3);
+        double resultado = (float)1/3 * Math.sqrt(2) * Math.pow(arista, 3);
         return resultado;
     }
 }

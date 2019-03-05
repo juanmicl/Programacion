@@ -23,12 +23,10 @@ public class OctaedroTest {
     @Test
     public void testArea() {
         System.out.println("area");
-        Octaedro instance = null;
-        double expResult = 0.0;
+        Octaedro instance = new Octaedro(2);
+        double expResult = 13.85;
         double result = instance.area();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, 0.1);
     }
 
     /**
@@ -37,12 +35,10 @@ public class OctaedroTest {
     @Test
     public void testVolumen() {
         System.out.println("volumen");
-        Octaedro instance = null;
-        double expResult = 0.0;
+        Octaedro instance = new Octaedro(2);
+        double expResult = 3.77;
         double result = instance.volumen();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, 0.1);
     }
     
 }
