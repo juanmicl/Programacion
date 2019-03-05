@@ -17,12 +17,23 @@ public class Ec22Grado {
     private int b;
     private int c;
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @param c
+     */
     public Ec22Grado(int a, int b, int c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public double primera() throws IOException {
         int d;
         double x1;
@@ -40,6 +51,11 @@ public class Ec22Grado {
         return x1;
     }
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public double segunda() throws IOException {
         int d;
         double x2;
@@ -57,6 +73,10 @@ public class Ec22Grado {
         return x2;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Ec22Grado{" + "a=" + a + ", b=" + b + ", c=" + c + '}';

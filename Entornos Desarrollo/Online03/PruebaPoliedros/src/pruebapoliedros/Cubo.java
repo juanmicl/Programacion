@@ -12,6 +12,10 @@ package pruebapoliedros;
 public class Cubo {
     private int arista;
     
+    /**
+     *
+     * @param arista
+     */
     public Cubo(int arista) {
         this.arista = arista;
     }

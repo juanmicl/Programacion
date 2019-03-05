@@ -13,6 +13,10 @@ package pruebapoliedros;
 public class Tetraedro {
     private int arista;
     
+    /**
+     *
+     * @param arista
+     */
     public Tetraedro(int arista) {
         this.arista = arista;
     }

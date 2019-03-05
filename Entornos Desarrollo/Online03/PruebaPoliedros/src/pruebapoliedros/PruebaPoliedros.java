@@ -17,6 +17,11 @@ public class PruebaPoliedros {
     
     static BufferedReader bufEntrada = new BufferedReader(new InputStreamReader(System.in));
     
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public static int menu() throws IOException {
         int op;
         System.out.println("MENÚ");
