@@ -21,25 +21,33 @@ public class CLJPre07 {
     public static void main(String[] args) throws IOException {
         Archivos archivo = new Archivos();
         ArrayList<String> lineas;
-        
+        String[] datos;
+
         lineas = archivo.getLineas("/home/juanmi/Documentos/entrada.txt");
-        
+
         for (String linea : lineas) {
             switch (linea.charAt(0)) {
                 case 'M':
                     // hacemos la media split by $
-                    String[] datos = linea.split("\\$");
-                    
-                    for (String dato : datos) {
-                        System.out.println(dato);
-                    }
-                    
+                    linea = linea.substring(1);
+                    datos = linea.split("\\$");
+                    //System.out.println("Media: "+media(datos));
+                    // que podría haber creado un constructor y meter el path dentro y hacerlo como objeto salida y entrada pero así es más rápido
+                    archivo.escribir("/home/juanmi/Documentos/salida.txt", "Media: "+Float.toString(media(datos)));
                     break;
                 case 'S':
-                    System.out.println("Esto es una suma\n");
+                    // hacemos la suba split by $
+                    linea = linea.substring(1);
+                    datos = linea.split("\\$");
+                    //System.out.println("Suma: "+suma(datos));
+                    archivo.escribir("/home/juanmi/Documentos/salida.txt", "Suma: "+Float.toString(suma(datos)));
                     break;
                 case 'B':
-                    System.out.println("Buscar palabra\n");
+                    // buscamos split by $
+                    linea = linea.substring(1);
+                    datos = linea.split("\\$");
+                    //System.out.println("Veces: "+buscar(datos));
+                    archivo.escribir("/home/juanmi/Documentos/salida.txt", "Veces: "+Float.toString(buscar(datos)));
                     break;
                 default:
                     System.out.println("Desconocido");
@@ -47,8 +55,37 @@ public class CLJPre07 {
             }
 
         }
+
+    }
+
+    private static float media (String[] datos) {
+        int i = 0;
+        int suma = 0;
         
-        
+        for (String dato : datos) {
+            if (!"".equals(dato)) {
+                suma += Float.parseFloat(dato);
+            }
+            i++;
+        }
+        return suma/i;
     }
     
+    private static float suma (String[] datos) {
+        int suma = 0;
+        
+        for (String dato : datos) {
+            if (!"".equals(dato)) {
+                suma += Float.parseFloat(dato);
+            }
+        }
+        return suma;
+    }
+    
+    private static int buscar (String[] datos) {
+        String []matches = datos[2].split(datos[1]);
+
+        return matches.length-1;
+    }
+
 }
