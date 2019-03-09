@@ -37,6 +37,6 @@ public final class Ave extends Animal{
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    } 
+        return "Ave{" + "nombre=" + getNombre() + ", " + "peso=" + getPeso() + ", " + "edad=" + getEdad()+ ", " + "color=" + getColor() + ", puedeVolar=" + getPuedeVolar() + '}';
+    }
 }

@@ -22,13 +22,30 @@ public class Mamifero extends Animal{
         ACUATICO,TERRESTRE,VOLADOR;
     }
 
-    public Mamifero(TipoMamifero tipoMamifero, TipoAlimentacion tipoAlimentacion, String nombre, float peso, int edad) {
+    public Mamifero(TipoAlimentacion tipoAlimentacion, TipoMamifero tipoMamifero, String nombre, float peso, int edad) {
         super(nombre, peso, edad);
+        this.tipoAlimentacion = tipoAlimentacion;
+        this.tipoMamifero = tipoMamifero;
+    }
+
+    public TipoMamifero getTipo() {
+        return tipoMamifero;
+    }
+
+    public void setTipo(TipoMamifero tipoMamifero) {
+        this.tipoMamifero = tipoMamifero;
+    }
+    
+    public TipoAlimentacion getAlimentacion() {
+        return tipoAlimentacion;
+    }
+
+    public void setAlimentacion(TipoAlimentacion tipoAlimentacion) {
+        this.tipoAlimentacion = tipoAlimentacion;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Mamifero{" + "nombre=" + getNombre()+ ", " + "peso=" + getPeso() + ", " + "edad=" + getEdad()+ ", " + "tipoAlimentacion=" + getAlimentacion() + ", tipoMamifero=" + getTipo() + '}';
     }
-    
 }
