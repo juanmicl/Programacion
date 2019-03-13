@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -177,13 +176,12 @@ public class ES {
             if (sobrescribir) {
                 archivo = new FileWriter(ruta, false); // el true es para append
                 archivo.write(datos);
-                archivo.close();
             } else{
                 archivo = new FileWriter(ruta, true); // el true es para append
                 archivo.write("\n"+datos);
-                archivo.close();
             }
             
+            archivo.close();
             return true;
 
         } catch (IOException ex) {
@@ -192,6 +190,13 @@ public class ES {
         }
     }
     
+    /**
+     *
+     * @param ruta
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public static String leerArchivo(String ruta) throws FileNotFoundException, IOException{
         String salida = "";
         String cadena;
