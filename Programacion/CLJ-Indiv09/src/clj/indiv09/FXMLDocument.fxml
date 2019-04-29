@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="712.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clj.indiv09.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clj.indiv09.FXMLDocumentController">
    <children>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -27,19 +27,23 @@
         <tabs>
           <Tab text="Clientes">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="712.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="712.0">
                      <children>
-                        <ListView id="listClientes" prefHeight="573.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ListView id="listClientes" fx:id="listClientes" layoutY="26.0" onMouseClicked="#loadClientes" prefHeight="546.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
                         <Label layoutX="208.0" layoutY="20.0" prefHeight="14.0" prefWidth="25.0" text="NIF:" />
                         <Label layoutX="208.0" layoutY="52.0" prefHeight="17.0" prefWidth="54.0" text="Nombre:" />
                         <Label layoutX="208.0" layoutY="84.0" prefHeight="17.0" prefWidth="54.0" text="Dirección:" />
                         <Label layoutX="208.0" layoutY="117.0" prefHeight="17.0" prefWidth="54.0" text="Localidad:" />
                         <Label layoutX="208.0" layoutY="149.0" prefHeight="17.0" prefWidth="54.0" text="CP:" />
-                        <TextField id="txtNif" layoutX="282.0" layoutY="16.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
-                        <TextField id="txtNombre" layoutX="282.0" layoutY="48.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
-                        <TextField id="txtDireccion" layoutX="282.0" layoutY="80.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
-                        <TextField id="txtLocalidad" layoutX="281.0" layoutY="113.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
-                        <TextField id="txtCp" layoutX="283.0" layoutY="145.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="15.0" />
+                        <TextField id="txtNif" fx:id="txtClientesNif" layoutX="282.0" layoutY="16.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
+                        <TextField id="txtNombre" fx:id="txtClientesNombre" layoutX="282.0" layoutY="48.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtClientesDireccion" layoutX="282.0" layoutY="80.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtClientesLocalidad" layoutX="281.0" layoutY="113.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtCp" fx:id="txtClientesCP" layoutX="283.0" layoutY="145.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="15.0" />
+                        <TextField layoutX="57.0" layoutY="2.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="6.0" layoutY="5.0" text="Buscar:" />
+                        <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
+                        <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarCliente" prefHeight="43.0" prefWidth="82.0" text="Eliminar" />
                      </children>
                   </AnchorPane>
             </content>
