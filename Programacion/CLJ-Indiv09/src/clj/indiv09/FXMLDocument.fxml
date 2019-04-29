@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="712.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clj.indiv09.FXMLDocumentController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Importar" />
+                  <MenuItem mnemonicParsing="false" text="Exportar" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="A cerca de" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="25.0" prefHeight="601.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <tabs>
+          <Tab text="Clientes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="712.0">
+                     <children>
+                        <ListView id="listClientes" prefHeight="573.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="208.0" layoutY="20.0" prefHeight="14.0" prefWidth="25.0" text="NIF:" />
+                        <Label layoutX="208.0" layoutY="52.0" prefHeight="17.0" prefWidth="54.0" text="Nombre:" />
+                        <Label layoutX="208.0" layoutY="84.0" prefHeight="17.0" prefWidth="54.0" text="Dirección:" />
+                        <Label layoutX="208.0" layoutY="117.0" prefHeight="17.0" prefWidth="54.0" text="Localidad:" />
+                        <Label layoutX="208.0" layoutY="149.0" prefHeight="17.0" prefWidth="54.0" text="CP:" />
+                        <TextField id="txtNif" layoutX="282.0" layoutY="16.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
+                        <TextField id="txtNombre" layoutX="282.0" layoutY="48.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" layoutX="282.0" layoutY="80.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" layoutX="281.0" layoutY="113.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtCp" layoutX="283.0" layoutY="145.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Vehículos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView id="listVehiculos" prefHeight="573.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Alquileres">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="250.0">
+                     <children>
+                        <ListView id="listAlquileres" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
