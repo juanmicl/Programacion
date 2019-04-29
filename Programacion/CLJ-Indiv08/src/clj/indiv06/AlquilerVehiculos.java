@@ -14,10 +14,6 @@ import java.util.ArrayList;
  */
 public class AlquilerVehiculos {
     
-    static final int MAX_VEHICULOS = 50;
-    static final int MAX_CLIENTES = 50;
-    static final int MAX_ALQUILERES = 50;
-    
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
     // ARRAY LISTS //
@@ -25,9 +21,6 @@ public class AlquilerVehiculos {
     private static ArrayList<Vehiculo> vehiculos = new ArrayList();
     private static ArrayList<Alquiler> alquileres = new ArrayList();
     // ARRAY LISTS FIN //
-    //private static Cliente[] clientes = new Cliente[MAX_CLIENTES];
-    //private static Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
-    //private static Alquiler[] alquileres = new Alquiler[MAX_ALQUILERES];
     
     public AlquilerVehiculos() {
     }
@@ -158,23 +151,19 @@ public class AlquilerVehiculos {
     private static void anadirCliente(String dni) {
         Cliente cliente;
         dni = Utilidades.comprobarDni(dni);
-        if (clientes.size() < MAX_CLIENTES) {
-            cliente = getCliente(dni);
-            if (cliente == null) {
-                // Introducimos cliente
-                clientes.add(new Cliente(
-                    dni,
-                    ES.leerCadena("Introducir Nombre: "),
-                    ES.leerCadena("Introducir Dirección: "),
-                    ES.leerCadena("Intrducir Localidad: "),
-                    Utilidades.comprobarCodigoPostal(ES.leerCadena("Introducir Codigo Postal"))
-                ));
-            } else {
-                ES.escribirLn("Este DNI ya está en el array.");
-            }     
+        cliente = getCliente(dni);
+        if (cliente == null) {
+            // Introducimos cliente
+            clientes.add(new Cliente(
+                dni,
+                ES.leerCadena("Introducir Nombre: "),
+                ES.leerCadena("Introducir Dirección: "),
+                ES.leerCadena("Intrducir Localidad: "),
+                Utilidades.comprobarCodigoPostal(ES.leerCadena("Introducir Codigo Postal"))
+            ));
         } else {
-            ES.escribirLn("No se pueden añadir más clientes, array completo.");
-        }
+            ES.escribirLn("Este DNI ya está en el array.");
+        } 
     }
     
     private static void borrarCliente(String dni) {
@@ -220,111 +209,107 @@ public class AlquilerVehiculos {
         Enumerados.TipoCombustible tipoCombustible;
         Enumerados.Tamanio tamanio;
         
-        if (vehiculos.size() < MAX_CLIENTES) {
-            if (getVehiculo(matricula) == null) {
-                boolean anadido = false;
-                while (anadido == false) {
-                    int tipoVehiculo = ES.leerEntero(
-                        "Introduce tipo de vehiculo:\n"
-                        + "1. Deportivo\n"
-                        + "2. Familiar\n"
-                        + "3. Furgoneta"
-                    );
-                    switch (tipoVehiculo) {
-                        case 1:
-                            // Introducimos Deportivo
-                            if(ES.leerEntero("Introduce opción:\n1. Automática\n2. Manual",1, 2) == 1) {
-                                cajaCambios = Enumerados.CajaCambios.AUTOMATICA;
-                            } else {
-                                cajaCambios = Enumerados.CajaCambios.MANUAL;
+        if (getVehiculo(matricula) == null) {
+            boolean anadido = false;
+            while (anadido == false) {
+                int tipoVehiculo = ES.leerEntero(
+                    "Introduce tipo de vehiculo:\n"
+                    + "1. Deportivo\n"
+                    + "2. Familiar\n"
+                    + "3. Furgoneta"
+                );
+                switch (tipoVehiculo) {
+                    case 1:
+                        // Introducimos Deportivo
+                        if(ES.leerEntero("Introduce opción:\n1. Automática\n2. Manual",1, 2) == 1) {
+                            cajaCambios = Enumerados.CajaCambios.AUTOMATICA;
+                        } else {
+                            cajaCambios = Enumerados.CajaCambios.MANUAL;
+                        }
+                        while (true) {
+                            ES.escribirLn("Introduce opción:");
+                            for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
+                                ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
                             }
-                            while (true) {
-                                ES.escribirLn("Introduce opción:");
-                                for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
-                                    ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
-                                }
-                                try {
-                                    tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
-                                    break;
-                                } catch (Exception e) {
-                                    ES.escribirLn("Elige un número de la lista.");
-                                }
+                            try {
+                                tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
+                                break;
+                            } catch (Exception e) {
+                                ES.escribirLn("Elige un número de la lista.");
                             }
-                            vehiculos.add(new Deportivo(
-                                ES.leerBooleano("Descapotable", "Normal"),
-                                cajaCambios,
-                                ES.leerEntero("Introduce nº de puertas", 3, 5),
-                                tipoCombustible,
-                                matricula,
-                                ES.leerCadena("Introduce marca:"),
-                                ES.leerCadena("Introduce modelo:"),
-                                ES.leerEntero("Introduce cilindrada:")
-                            ));
-                            anadido = true;
-                            break;
-                        case 2:
-                            // Introducimos Familiar
-                            while (true) {
-                                ES.escribirLn("Introduce opción:");
-                                for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
-                                    ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
-                                }
-                                try {
-                                    tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
-                                    break;
-                                } catch (Exception e) {
-                                    ES.escribirLn("Elige un número de la lista.");
-                                }
+                        }
+                        vehiculos.add(new Deportivo(
+                            ES.leerBooleano("Descapotable", "Normal"),
+                            cajaCambios,
+                            ES.leerEntero("Introduce nº de puertas", 3, 5),
+                            tipoCombustible,
+                            matricula,
+                            ES.leerCadena("Introduce marca:"),
+                            ES.leerCadena("Introduce modelo:"),
+                            ES.leerEntero("Introduce cilindrada:")
+                        ));
+                        anadido = true;
+                        break;
+                    case 2:
+                        // Introducimos Familiar
+                        while (true) {
+                            ES.escribirLn("Introduce opción:");
+                            for (int i = 0; i < Enumerados.TipoCombustible.values().length; i++) {
+                                ES.escribirLn(i+". "+Enumerados.TipoCombustible.values()[i]);
                             }
-                            vehiculos.add(new Familiar(
-                                ES.leerEntero("Introduce nº plazas:", 4, 7),
-                                ES.leerBooleano("Con silla bebé", "Sin silla bebé"),
-                                ES.leerEntero("Introduce nº de puertas", 3, 10),
-                                tipoCombustible,
-                                matricula,
-                                ES.leerCadena("Introduce marca:"),
-                                ES.leerCadena("Introduce modelo:"),
-                                ES.leerEntero("Introduce cilindrada:")
-                            ));
-                            anadido = true;
-                            break;
-                        case 3:
-                            // Introducimos Furgoneta
-                            while (true) {
-                                ES.escribirLn("Introduce opción:");
-                                for (int i = 0; i < Enumerados.Tamanio.values().length; i++) {
-                                    ES.escribirLn(i+". "+Enumerados.Tamanio.values()[i]);
-                                }
-                                try {
-                                    tamanio = Enumerados.Tamanio.values()[ES.leerEntero()];
-                                    break;
-                                } catch (Exception e) {
-                                    ES.escribirLn("Elige un número de la lista.");
-                                }
+                            try {
+                                tipoCombustible = Enumerados.TipoCombustible.values()[ES.leerEntero()];
+                                break;
+                            } catch (Exception e) {
+                                ES.escribirLn("Elige un número de la lista.");
                             }
-                            vehiculos.add(new Furgoneta(
-                                ES.leerBooleano("Refrigerado", "Sin refrigerar"),
-                                tamanio,
-                                ES.leerEntero("Introduce pma:", 1),
-                                ES.leerEntero("Introduce volumen:", 1),
-                                matricula,
-                                ES.leerCadena("Introduce marca:"),
-                                ES.leerCadena("Introduce modelo:"),
-                                ES.leerEntero("Introduce cilindrada:")
-                            ));
-                            anadido = true;
-                            break;
-                        default:
-                            ES.escribirLn("Elige una opción válida.");
-                            break;
-                    }
+                        }
+                        vehiculos.add(new Familiar(
+                            ES.leerEntero("Introduce nº plazas:", 4, 7),
+                            ES.leerBooleano("Con silla bebé", "Sin silla bebé"),
+                            ES.leerEntero("Introduce nº de puertas", 3, 10),
+                            tipoCombustible,
+                            matricula,
+                            ES.leerCadena("Introduce marca:"),
+                            ES.leerCadena("Introduce modelo:"),
+                            ES.leerEntero("Introduce cilindrada:")
+                        ));
+                        anadido = true;
+                        break;
+                    case 3:
+                        // Introducimos Furgoneta
+                        while (true) {
+                            ES.escribirLn("Introduce opción:");
+                            for (int i = 0; i < Enumerados.Tamanio.values().length; i++) {
+                                ES.escribirLn(i+". "+Enumerados.Tamanio.values()[i]);
+                            }
+                            try {
+                                tamanio = Enumerados.Tamanio.values()[ES.leerEntero()];
+                                break;
+                            } catch (Exception e) {
+                                ES.escribirLn("Elige un número de la lista.");
+                            }
+                        }
+                        vehiculos.add(new Furgoneta(
+                            ES.leerBooleano("Refrigerado", "Sin refrigerar"),
+                            tamanio,
+                            ES.leerEntero("Introduce pma:", 1),
+                            ES.leerEntero("Introduce volumen:", 1),
+                            matricula,
+                            ES.leerCadena("Introduce marca:"),
+                            ES.leerCadena("Introduce modelo:"),
+                            ES.leerEntero("Introduce cilindrada:")
+                        ));
+                        anadido = true;
+                        break;
+                    default:
+                        ES.escribirLn("Elige una opción válida.");
+                        break;
                 }
-            } else {
-                ES.escribirLn("Esta Matricula ya está en el array.");
-            }     
+            }
         } else {
-            ES.escribirLn("No se pueden añadir más vehiculos, array completo.");
-        }
+            ES.escribirLn("Esta Matricula ya está en el array.");
+        }     
     }
     
     private static void borrarVehiculo(String matricula) {
@@ -383,7 +368,7 @@ public class AlquilerVehiculos {
 
             if (coincide == true) {
                 ES.escribirLn(alquileres.get(alquilerPos).getCliente().getDni());
-                alquileres.remove(alquilerPos);
+                //alquileres.remove(alquilerPos);
                 vehiculo.setDisponible(true);
             } else {
                 ES.escribirLn("Esta matrícula y DNI no se encuentran en el mismo alquiler");
