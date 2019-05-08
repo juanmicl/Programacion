@@ -13,8 +13,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Importar" />
-                  <MenuItem mnemonicParsing="false" text="Exportar" />
+              <MenuItem mnemonicParsing="false" onAction="#leerDatos" text="Cargar" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarDatos" text="Guardar" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Ayuda">
@@ -45,6 +45,7 @@
                         <Label layoutX="6.0" layoutY="5.0" text="Buscar:" />
                         <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
                         <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarCliente" prefHeight="43.0" prefWidth="82.0" text="Eliminar" />
+                        <Button layoutX="408.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Guardar" />
                      </children>
                   </AnchorPane>
             </content>
@@ -67,6 +68,7 @@
                         <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirVehiculo" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
                         <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarVehiculo" prefHeight="43.0" prefWidth="82.0" text="Eliminar" />
                         <CheckBox fx:id="chkVehDisponible" layoutX="282.0" layoutY="153.0" mnemonicParsing="false" text="Disponible" />
+                        <Button layoutX="407.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Guardar" />
                      </children>
                   </AnchorPane>
                </content>

@@ -6,6 +6,7 @@
 package clj.indiv09;
 
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -345,6 +346,87 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    public void guardarDatos(){
+        String ruta = "";
+        String texto = "";
+        
+        // Clientes
+        ES.escribirArchivo(ruta+"clientes.txt", "", false);
+        for (Cliente cliente : listClientesData) {
+            texto = cliente.getDni()+"#"+cliente.getNombre()+"#"+cliente.getDireccion()+"#"+cliente.getLocalidad()+"#"+cliente.getCodigoPostal()+"\n";
+            ES.escribirArchivo(ruta+"clientes.txt", texto, true);
+        }
+        
+        // Vehiculos
+        ES.escribirArchivo(ruta+"vehiculos.txt", "", false);
+        for (Vehiculo vehiculo : listVehiculosData) {
+            texto = vehiculo.getClass().getSimpleName()+"#"+vehiculo.getMatricula()+"#"+vehiculo.getMarca()+"#"+vehiculo.getModelo()+"#"+vehiculo.getCilindrada()+"\n";
+            ES.escribirArchivo(ruta+"vehiculos.txt", texto, true);
+        }
+        
+        // Alquileres
+        ES.escribirArchivo(ruta+"alquileres.txt", "", false);
+        for (Alquiler alquiler : listAlquileresData) {
+            texto = alquiler.getCliente()+"#"+alquiler.getVehiculo()+"#"+alquiler.getDias()+"#"+alquiler.getFecha()+"\n";
+            ES.escribirArchivo(ruta+"alquileres.txt", texto, true);
+        }
+    }
+    
+    @FXML
+    public void leerDatos() throws IOException{
+        String ruta = "";
+        String[] txt;
+        String[] elemento;
+        
+        // Clientes
+        txt = ES.leerArchivo(ruta+"clientes.txt").split("\n");
+        for (String linea : txt) {
+            if (linea.matches("^(.*)#(.*)#(.*)#(.*)#(.*)$")) {
+                elemento = linea.split("#");
+                listClientesData.add(new Cliente(
+                    elemento[0],
+                    elemento[1],
+                    elemento[2],
+                    elemento[3],
+                    elemento[4]
+                ));
+            } 
+        }
+        // Vehiculos
+        txt = ES.leerArchivo(ruta+"vehiculos.txt").split("\n");
+        for (String linea : txt) {
+            if (linea.matches("^(.*)#(.*)#(.*)#(.*)#(.*)$")) {
+                elemento = linea.split("#");
+                switch(elemento[0].toLowerCase()){
+                    case "deportivo":
+                        // pongo por defecto estos valores como ejemplo
+                        listVehiculosData.add(new Deportivo(true, Enumerados.CajaCambios.MANUAL, 3, Enumerados.TipoCombustible.DIESEL, elemento[1], elemento[2], elemento[3], Integer.valueOf(elemento[4])));
+                        break;
+                    case "familiar":
+                        // pongo por defecto estos valores como ejemplo
+                        listVehiculosData.add(new Familiar(7, true, 5, Enumerados.TipoCombustible.DIESEL, elemento[1], elemento[2], elemento[3], Integer.valueOf(elemento[4])));
+                        break;
+                    case "furgoneta":
+                        // pongo por defecto estos valores como ejemplo
+                        listVehiculosData.add(new Furgoneta(false, Enumerados.Tamanio.GRANDE, 10, 10, elemento[1], elemento[2], elemento[3], Integer.valueOf(elemento[4])));
+                        break;
+                    default:
+                        ES.escribirLn("Se han encontrado datos corruptos!");
+                        break;
+                }
+            } 
+        }
+        // Alquileres
+        txt = ES.leerArchivo(ruta+"alquileres.txt").split("\n");
+        for (String linea : txt) {
+            if (linea.matches("^(.*)#(.*)#(.*)#(.*)$")) {
+                elemento = linea.split("#");
+                // la idea es añadir dni y matricula... y aquí luego crear la "relación" con su nuevo objeto
+                //alquileres.add(new Alquiler(elemento[0], elemento[1]));
+            } 
+        }
+    }
+    
     @FXML
     public void acercade() {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -356,15 +438,16 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // metemos datos de prueba
+        /* metemos datos de prueba
         listClientesData.add(new Cliente("11232311A", "Pepe Lopez", "Calle de arriba", "Vicar", "04720"));
         listClientesData.add(new Cliente("11232999B", "Andrea Perez", "Calle de en medio", "Vicar", "04720"));
         listClientesData.add(new Cliente("11456711C", "Alex Romero", "Calle de abajo", "Vicar", "04720"));
         // metemos vehiculos de prueba
-        listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "1111BAB", "Audi", "A3", 0));
+        listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "1111BBB", "Audi", "A3", 0));
         listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "2222BBB", "Citroen", "C3", 0));
         // metemos alquileres de prueba
         listAlquileresData.add(new Alquiler(listClientesData.get(0), listVehiculosData.get(0)));
+        */
         
         listClientes.setItems(listClientesData);
         listVehiculos.setItems(listVehiculosData);
