@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="twoWindow.MainFXMLController">
+    <children>
+        <Button fx:id="button" layoutY="174.0" onAction="#anteriorLibroBtnAction" text="Anterior" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="42.0" prefHeight="17.0" prefWidth="42.0" text="ISBN" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <Button fx:id="button1" layoutX="10.0" layoutY="185.0" onAction="#siguienteLibroBtnAction" text="Siguiente" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" />
+      <Button fx:id="button11" layoutX="80.0" layoutY="185.0" onAction="#cargarPanelAnadirLibroBtnAction" text="Añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label fx:id="label1" layoutX="40.0" layoutY="40.0" minHeight="16" minWidth="51.0" prefHeight="17.0" prefWidth="51.0" text="Nombre" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="62.0" />
+      <Label fx:id="label11" layoutX="40.0" layoutY="60.0" minHeight="16" minWidth="51.0" prefHeight="17.0" prefWidth="51.0" text="Autor" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
+      <TextField fx:id="tf_isbn" editable="false" layoutX="86.0" layoutY="26.0" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="26.0" />
+      <TextField fx:id="tf_nombre" editable="false" layoutX="96.0" layoutY="36.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="56.0" />
+      <TextField fx:id="tf_autor" editable="false" layoutX="96.0" layoutY="66.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="86.0" />
+    </children>
+</AnchorPane>

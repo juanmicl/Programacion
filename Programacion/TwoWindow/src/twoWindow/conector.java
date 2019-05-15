@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clj.indiv09;
+package twoWindow;
 
 import java.sql.*;
 
@@ -14,7 +14,7 @@ import java.sql.*;
 public class conector {
     
     public String driver = "com.mysql.jdbc.Driver";
-    public String database = "alquileres";
+    public String database = "biblioteca";
     public String hostname = "localhost";
     public String port = "3306";
 

@@ -30,21 +30,44 @@ public class FXMLDocumentController implements Initializable {
 
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
-    // MYSQL
-    private static conector SQL = new conector();
-    private static Connection conn = SQL.conectarMySQL();
-    // PreparedStatement
     
-    Statement s;
+    //Instancia de la clase BD
+    private final conector bd = new conector();
+    // Llamar al metodo que tiene la clase y devuelve una conexion
+    private final Connection conn = bd.conectarMySQL();
     
-    public FXMLDocumentController() throws SQLException {
-        this.s = conn.createStatement();
-    }
-        
-          
-   ResultSet rs = s.executeQuery ("INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `codigoPostal`) VALUES ('123', 'juan', 'asd', 'asd', '04720')");
+    @FXML
+    private void conexionMysqlButton() throws SQLException {
 
-    
+        
+        
+        String query = "INSERT INTO libros (isbn, nombre, autor) values "
+                + "(?, ?, ?);";
+        
+        PreparedStatement statement = preparedStatement(query);
+        
+        try { 
+            statement.setString(1, tf_isbn.getText());
+            statement.setString(2, tf_nombre.getText());
+            statement.setString(3, tf_autor.getText());
+            
+            statement.executeUpdate();
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Base de datos");
+            alert.setHeaderText("¡Correcto!");
+            alert.setContentText("Libro insertado");
+            
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+        
+
+    }
+
+    private PreparedStatement preparedStatement(String query) throws SQLException {
+        return conexion.prepareStatement(query);
+    }
     
     private Cliente getCliente(String dni) {
         for (Cliente cliente : listClientesData) {
