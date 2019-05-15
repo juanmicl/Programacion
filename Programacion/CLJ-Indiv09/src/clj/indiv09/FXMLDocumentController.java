@@ -5,12 +5,14 @@
  */
 package clj.indiv09;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +30,21 @@ public class FXMLDocumentController implements Initializable {
 
     private static ES ES = new ES();
     private static Utilidades Utilidades = new Utilidades();
+    // MYSQL
+    private static conector SQL = new conector();
+    private static Connection conn = SQL.conectarMySQL();
+    // PreparedStatement
+    
+    Statement s;
+    
+    public FXMLDocumentController() throws SQLException {
+        this.s = conn.createStatement();
+    }
+        
+          
+   ResultSet rs = s.executeQuery ("INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `codigoPostal`) VALUES ('123', 'juan', 'asd', 'asd', '04720')");
+
+    
     
     private Cliente getCliente(String dni) {
         for (Cliente cliente : listClientesData) {
