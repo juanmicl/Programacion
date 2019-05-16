@@ -1,6 +1,7 @@
 package twoWindow;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ import twoWindow.OldMain;
  * @author Antonio Ramos
  */
 public class AddBookFXMLController implements Initializable {
+    
+    public static conector conector = new conector();
 
     @FXML
     private Button btn_cancel;
@@ -53,7 +56,7 @@ public class AddBookFXMLController implements Initializable {
      * @param event 
      */
     @FXML
-    private void anadirLibro(ActionEvent event) {
+    private void anadirLibro(ActionEvent event) throws SQLException {
         if (tf_autor.getText().equals("") || tf_isbn.getText().equals("") || tf_nombre.getText().equals("")) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
@@ -63,6 +66,7 @@ public class AddBookFXMLController implements Initializable {
             alert.showAndWait();
         }
         else{
+            conector.libro2db(tf_isbn.getText(), tf_nombre.getText(), tf_autor.getText(), "");
             OldMain.anadirLibro(new Libro(tf_isbn.getText(), tf_nombre.getText(), tf_autor.getText()));
             
             Alert alert = new Alert(AlertType.INFORMATION);

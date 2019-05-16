@@ -13,6 +13,11 @@ import java.sql.*;
  */
 public class conector {
     
+    //Instancia de la clase BD
+    private static final conector bd = new conector();
+    // Llamar al metodo que tiene la clase y devuelve una conexion
+    private static final Connection conn = bd.conectarMySQL();
+    
     public String driver = "com.mysql.jdbc.Driver";
     public String database = "biblioteca";
     public String hostname = "localhost";
@@ -34,5 +39,34 @@ public class conector {
         }
 
         return conn;
+    }
+    
+    private static PreparedStatement preparedStatement(String query) throws SQLException {
+        return conn.prepareStatement(query);
+    }
+    
+    public static void db2array() throws SQLException {
+        // Cargamos libricos
+        PreparedStatement statement = conn.prepareStatement("SELECT * FROM libros");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            OldMain.anadirLibro(new Libro(rs.getString(1), rs.getString(2), rs.getString(3)));
+        }
+    }
+    
+    public static void libro2db(String isbn, String nombre, String autor, String desc) throws SQLException {
+        // Insertamos librico
+        String query = "INSERT INTO `libros` (`isbn`, `nombre`, `autor`, `descripcion`) VALUES (?, ?, ?, ?);";
+        PreparedStatement statement = preparedStatement(query);
+        try { 
+            statement.setString(1, isbn);
+            statement.setString(2, nombre);
+            statement.setString(3, autor);
+            statement.setString(4, desc);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
     }
 }
