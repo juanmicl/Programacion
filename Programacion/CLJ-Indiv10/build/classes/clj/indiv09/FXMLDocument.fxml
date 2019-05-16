@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clj.indiv09.FXMLDocumentController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#leerDatos" text="Cargar" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarDatos" text="Guardar" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#acercade" text="A cerca de" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="25.0" prefHeight="601.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <tabs>
+          <Tab text="Clientes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="712.0">
+                     <children>
+                        <ListView id="listClientes" fx:id="listClientes" layoutY="26.0" onMouseClicked="#loadClientes" prefHeight="546.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
+                        <Label layoutX="208.0" layoutY="20.0" prefHeight="14.0" prefWidth="25.0" text="NIF:" />
+                        <Label layoutX="208.0" layoutY="52.0" prefHeight="17.0" prefWidth="54.0" text="Nombre:" />
+                        <Label layoutX="208.0" layoutY="84.0" prefHeight="17.0" prefWidth="54.0" text="Dirección:" />
+                        <Label layoutX="208.0" layoutY="117.0" prefHeight="17.0" prefWidth="54.0" text="Localidad:" />
+                        <Label layoutX="208.0" layoutY="149.0" prefHeight="17.0" prefWidth="54.0" text="CP:" />
+                        <TextField id="txtNif" fx:id="txtClientesNif" layoutX="282.0" layoutY="16.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
+                        <TextField id="txtNombre" fx:id="txtClientesNombre" layoutX="282.0" layoutY="48.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtClientesDireccion" layoutX="282.0" layoutY="80.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtClientesLocalidad" layoutX="281.0" layoutY="113.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtCp" fx:id="txtClientesCP" layoutX="283.0" layoutY="145.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="15.0" />
+                        <TextField layoutX="57.0" layoutY="2.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="6.0" layoutY="5.0" text="Buscar:" />
+                        <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
+                        <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarCliente" prefHeight="43.0" prefWidth="82.0" text="Eliminar" />
+                        <Button layoutX="408.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Guardar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Vehículos">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="712.0">
+                     <children>
+                        <ListView id="listClientes" fx:id="listVehiculos" layoutY="26.0" onMouseClicked="#loadVehiculos" prefHeight="546.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
+                        <Label layoutX="208.0" layoutY="20.0" prefHeight="17.0" prefWidth="61.0" text="Matrícula:" />
+                        <Label layoutX="208.0" layoutY="52.0" prefHeight="17.0" prefWidth="54.0" text="Marca:" />
+                        <Label layoutX="208.0" layoutY="84.0" prefHeight="17.0" prefWidth="54.0" text="Modelo:" />
+                        <Label layoutX="208.0" layoutY="117.0" prefHeight="17.0" prefWidth="62.0" text="Cilindrada:" />
+                        <TextField id="txtNif" fx:id="txtVehMatricula" layoutX="282.0" layoutY="16.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
+                        <TextField id="txtNombre" fx:id="txtVehMarca" layoutX="282.0" layoutY="48.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtVehModelo" layoutX="282.0" layoutY="80.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtVehCilindrada" layoutX="281.0" layoutY="113.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField layoutX="57.0" layoutY="2.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="6.0" layoutY="5.0" text="Buscar:" />
+                        <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirVehiculo" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
+                        <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarVehiculo" prefHeight="43.0" prefWidth="82.0" text="Eliminar" />
+                        <CheckBox fx:id="chkVehDisponible" layoutX="282.0" layoutY="153.0" mnemonicParsing="false" text="Disponible" />
+                        <Button layoutX="407.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="43.0" prefWidth="82.0" text="Guardar" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Alquileres">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="712.0">
+                     <children>
+                        <ListView id="listClientes" fx:id="listAlquileres" layoutY="26.0" onMouseClicked="#loadAlquileres" prefHeight="546.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
+                        <Label layoutX="208.0" layoutY="54.0" prefHeight="14.0" prefWidth="25.0" text="NIF:" />
+                        <Label layoutX="208.0" layoutY="86.0" prefHeight="17.0" prefWidth="54.0" text="Nombre:" />
+                        <Label layoutX="208.0" layoutY="118.0" prefHeight="17.0" prefWidth="54.0" text="Dirección:" />
+                        <Label layoutX="208.0" layoutY="151.0" prefHeight="17.0" prefWidth="54.0" text="Localidad:" />
+                        <Label layoutX="208.0" layoutY="183.0" prefHeight="17.0" prefWidth="54.0" text="CP:" />
+                        <TextField id="txtNif" fx:id="txtAlqNif" layoutX="282.0" layoutY="50.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="281.0" />
+                        <TextField id="txtNombre" fx:id="txtAlqNombre" editable="false" layoutX="282.0" layoutY="82.0" prefHeight="25.0" prefWidth="413.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtAlqDireccion" editable="false" layoutX="282.0" layoutY="114.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtAlqLocalidad" editable="false" layoutX="282.0" layoutY="147.0" prefHeight="25.0" prefWidth="415.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtCp" fx:id="txtAlqCP" editable="false" layoutX="282.0" layoutY="179.0" prefHeight="25.0" prefWidth="414.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="15.0" />
+                        <TextField layoutX="57.0" layoutY="2.0" prefHeight="27.0" prefWidth="143.0" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="6.0" layoutY="5.0" text="Buscar:" />
+                        <Button layoutX="208.0" layoutY="515.0" mnemonicParsing="false" onAction="#anadirAlquiler" prefHeight="43.0" prefWidth="82.0" text="Añadir" />
+                        <Button layoutX="616.0" layoutY="515.0" mnemonicParsing="false" onAction="#borrarAlquiler" prefHeight="43.0" prefWidth="82.0" text="Terminar" />
+                        <Label layoutX="382.0" layoutY="11.0" prefHeight="32.0" prefWidth="98.0" text="CLIENTE">
+                           <font>
+                              <Font name="Arial Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="372.0" layoutY="232.0" prefHeight="32.0" prefWidth="118.0" text="VEHÍCULO">
+                           <font>
+                              <Font name="Arial Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="chkAlqDisponible" layoutX="283.0" layoutY="431.0" mnemonicParsing="false" text="Disponible" />
+                        <Label layoutX="208.0" layoutY="393.0" prefHeight="17.0" prefWidth="62.0" text="Cilindrada:" />
+                        <Label layoutX="208.0" layoutY="359.0" prefHeight="17.0" prefWidth="54.0" text="Modelo:" />
+                        <Label layoutX="208.0" layoutY="326.0" prefHeight="17.0" prefWidth="54.0" text="Marca:" />
+                        <Label layoutX="208.0" layoutY="290.0" prefHeight="17.0" prefWidth="61.0" text="Matrícula:" />
+                        <TextField id="txtNif" fx:id="txtAlqMatricula" layoutX="282.0" layoutY="286.0" />
+                        <TextField id="txtNombre" fx:id="txtAlqMarca" editable="false" layoutX="283.0" layoutY="322.0" prefHeight="25.0" prefWidth="414.0" />
+                        <TextField id="txtNombre" fx:id="txtAlqModelo" editable="false" layoutX="283.0" layoutY="355.0" prefHeight="25.0" prefWidth="414.0" />
+                        <TextField id="txtNombre" fx:id="txtAlqCilindrada" editable="false" layoutX="283.0" layoutY="389.0" prefHeight="25.0" prefWidth="414.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

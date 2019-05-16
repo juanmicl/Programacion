@@ -1,0 +1,1 @@
+Cliente{dni=11232311A, nombre=Pepe Lopez, direccion=Calle de arriba, localidad=Vicar, codigoPostal=04720}#numeroPlazas:0, sillaBebe:true, numeroPuertas: 0, TipoCombustible: DIESEL, matricula: 1111BBB, marca: Audi, modelo: A3, cilindrada: 0#0#Tue May 07 16:03:41 CEST 2019

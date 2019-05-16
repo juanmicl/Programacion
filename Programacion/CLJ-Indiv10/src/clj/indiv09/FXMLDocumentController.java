@@ -146,7 +146,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    public void anadirAlquiler() {
+    public void anadirAlquiler() throws SQLException {
         Vehiculo vehiculo;
         Cliente cliente;
         Alquiler alquiler;
@@ -156,7 +156,20 @@ public class FXMLDocumentController implements Initializable {
         if (vehiculo != null && cliente != null) {
             if (alquiler == null) {
                 if (Utilidades.comprobarMatricula(txtAlqMatricula.getText()) != null && Utilidades.comprobarDni(txtAlqNif.getText()) != null) {
-                    // Introducimos vehiculo
+                    // Introducimos alquiler
+                    String query = "INSERT INTO `alquileres` (`dni`, `matricula`, `fecha`, `dias`) VALUES (?, ?, ?, ?);";
+                    PreparedStatement statement = preparedStatement(query);
+
+                    try { 
+                        statement.setString(1, txtAlqNif.getText());
+                        statement.setString(2, txtAlqMatricula.getText());
+                        statement.setString(3, "0000-00-00");
+                        statement.setString(4, "10");
+
+                        statement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace(System.err);
+                    }
                     listAlquileresData.add(new Alquiler(cliente, vehiculo));
                 } else {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -182,7 +195,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    public void borrarAlquiler() {
+    public void borrarAlquiler() throws SQLException {
         if (listAlquileres.getSelectionModel().getSelectedItem() != null) {
             Alquiler tempAlquiler = listAlquileres.getSelectionModel().getSelectedItem();
 
@@ -193,7 +206,17 @@ public class FXMLDocumentController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
-                // borramos vehiculo
+                // borramos alquiler
+                String query = "DELETE FROM `alquileres` WHERE `alquileres`.`dni` = ? AND `alquileres`.`matricula` = ?;";
+                PreparedStatement statement = preparedStatement(query);
+
+                try { 
+                    statement.setString(1, listAlquileres.getSelectionModel().getSelectedItem().getCliente().getDni());
+                    statement.setString(2, listAlquileres.getSelectionModel().getSelectedItem().getVehiculo().getMatricula());
+                    statement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
                 listAlquileres.getSelectionModel().select(-1);
                 listAlquileresData.remove(tempAlquiler);
             } else {
@@ -221,7 +244,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    public void anadirVehiculo() {
+    public void anadirVehiculo() throws SQLException {
         Vehiculo vehiculo;
         vehiculo = getVehiculo(txtVehMatricula.getText());
         System.out.println(vehiculo);
@@ -229,6 +252,20 @@ public class FXMLDocumentController implements Initializable {
             //ES.escribirLn(Utilidades.comprobarMatricula(txtVehMatricula.getText()));
             if (Utilidades.comprobarMatricula(txtVehMatricula.getText()) != null) {
                 // Introducimos vehiculo
+                String query = "INSERT INTO `vehiculos` (`matricula`, `marca`, `modelo`, `cilindrada`, `disponible`) VALUES (?, ?, ?, ?, ?);";
+                PreparedStatement statement = preparedStatement(query);
+
+                try { 
+                    statement.setString(1, txtVehMatricula.getText());
+                    statement.setString(2, txtVehMarca.getText());
+                    statement.setString(3, txtVehModelo.getText());
+                    statement.setString(4, txtVehCilindrada.getText());
+                    statement.setString(5, "1");
+
+                    statement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.err);
+                }
                 listVehiculosData.add(new Familiar(
                     0,
                     false,
@@ -253,11 +290,10 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Este vehículo ya se encuentra en la base de datos!");
                 alert.showAndWait();
         }
-        
     }
     
     @FXML
-    public void borrarVehiculo() {
+    public void borrarVehiculo() throws SQLException {
         if (listVehiculos.getSelectionModel().getSelectedItem() != null) {
             System.out.println("Borrando -> " + listVehiculos.getSelectionModel().getSelectedItem().getMatricula());
             Vehiculo tempVehiculo = listVehiculos.getSelectionModel().getSelectedItem();
@@ -270,8 +306,22 @@ public class FXMLDocumentController implements Initializable {
 
             if (result.get() == ButtonType.OK) {
                 // borramos vehiculo
-                listVehiculos.getSelectionModel().select(-1);
-                listVehiculosData.remove(tempVehiculo);
+                String query = "DELETE FROM `vehiculos` WHERE `vehiculos`.`matricula` = ?;";
+                PreparedStatement statement = preparedStatement(query);
+
+                try { 
+                    statement.setString(1, listVehiculos.getSelectionModel().getSelectedItem().getMatricula());
+                    statement.executeUpdate();
+                    listVehiculos.getSelectionModel().select(-1);
+                    listVehiculosData.remove(tempVehiculo);
+                } catch (SQLException e) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error al eliminar objeto");
+                    alert.setContentText("Este vehículo tiene un alquiler en curso!");
+
+                    alert.showAndWait();
+                }
             } else {
                 // no ocurre nada
             }
@@ -298,13 +348,33 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void anadirCliente() {
+    public void anadirCliente() throws SQLException {
         Cliente cliente;
         cliente = getCliente(txtClientesNif.getText());
         System.out.println(cliente);
         if (cliente == null) {
             if (Utilidades.comprobarDni(txtClientesNif.getText()) != null && Utilidades.comprobarCodigoPostal(txtClientesCP.getText()) != null) {
                 // Introducimos cliente
+                String query = "INSERT INTO `clientes` (`dni`, `nombre`, `direccion`, `localidad`, `codigoPostal`) VALUES (?, ?, ?, ?, ?);";
+                PreparedStatement statement = preparedStatement(query);
+
+                try { 
+                    statement.setString(1, txtClientesNif.getText());
+                    statement.setString(2, txtClientesNombre.getText());
+                    statement.setString(3, txtClientesDireccion.getText());
+                    statement.setString(4, txtClientesLocalidad.getText());
+                    statement.setString(5, txtClientesCP.getText());
+
+                    statement.executeUpdate();
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Base de datos");
+                    alert.setHeaderText("¡Correcto!");
+                    alert.setContentText("Libro insertado");
+
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
                 listClientesData.add(new Cliente(
                     txtClientesNif.getText().toUpperCase(),
                     txtClientesNombre.getText(),
@@ -329,7 +399,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void borrarCliente() {
+    public void borrarCliente() throws SQLException {
         if (listClientes.getSelectionModel().getSelectedItem() != null) {
             System.out.println("Borrando -> " + listClientes.getSelectionModel().getSelectedItem().getNombre());
             Cliente tempCliente = listClientes.getSelectionModel().getSelectedItem();
@@ -342,8 +412,22 @@ public class FXMLDocumentController implements Initializable {
 
             if (result.get() == ButtonType.OK) {
                 // borramos cliente
-                listClientes.getSelectionModel().select(-1);
-                listClientesData.remove(tempCliente);
+                String query = "DELETE FROM `clientes` WHERE `clientes`.`dni` = ?;";
+                PreparedStatement statement = preparedStatement(query);
+
+                try { 
+                    statement.setString(1, listClientes.getSelectionModel().getSelectedItem().getDni());
+                    statement.executeUpdate();
+                    listClientes.getSelectionModel().select(-1);
+                    listClientesData.remove(tempCliente);
+                } catch (SQLException e) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error al eliminar objeto");
+                    alert.setContentText("Este cliente tiene un alquiler en curso!");
+
+                    alert.showAndWait();
+                }
             } else {
                 // no ocurre nada
             }
@@ -409,6 +493,8 @@ public class FXMLDocumentController implements Initializable {
             if (linea.matches("^(.*)#(.*)#(.*)#(.*)#(.*)$")) {
                 elemento = linea.split("#");
                 switch(elemento[0].toLowerCase()){
+                    // la idea sería comprobar si hay duplicados en el array ya que se han cargado de la base de datos
+                    // y añadir los que no estén duplicados
                     case "deportivo":
                         // pongo por defecto estos valores como ejemplo
                         listVehiculosData.add(new Deportivo(true, Enumerados.CajaCambios.MANUAL, 3, Enumerados.TipoCombustible.DIESEL, elemento[1], elemento[2], elemento[3], Integer.valueOf(elemento[4])));
@@ -438,6 +524,27 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    public void db2array() throws SQLException {
+        // Cargamos clientes
+        PreparedStatement statement = conn.prepareStatement("SELECT * FROM clientes");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            listClientesData.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+        }
+        // Cargamos vehículos
+        statement = conn.prepareStatement("SELECT * FROM vehiculos");
+        rs = statement.executeQuery();
+        while (rs.next()) {
+            listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, rs.getString(1), rs.getString(2), rs.getString(3), Integer.valueOf(rs.getString(4))));
+        }
+        //Cargamos alquileres
+        statement = conn.prepareStatement("SELECT * FROM alquileres");
+        rs = statement.executeQuery();
+        while (rs.next()) {
+            listAlquileresData.add(new Alquiler(getCliente(rs.getString(1)), getVehiculo(rs.getString(2))));
+        }
+    }
+    
     @FXML
     public void acercade() {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -449,16 +556,24 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /* metemos datos de prueba
-        listClientesData.add(new Cliente("11232311A", "Pepe Lopez", "Calle de arriba", "Vicar", "04720"));
-        listClientesData.add(new Cliente("11232999B", "Andrea Perez", "Calle de en medio", "Vicar", "04720"));
-        listClientesData.add(new Cliente("11456711C", "Alex Romero", "Calle de abajo", "Vicar", "04720"));
-        // metemos vehiculos de prueba
-        listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "1111BBB", "Audi", "A3", 0));
-        listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "2222BBB", "Citroen", "C3", 0));
-        // metemos alquileres de prueba
-        listAlquileresData.add(new Alquiler(listClientesData.get(0), listVehiculosData.get(0)));
-        */
+        
+            /* metemos datos de prueba
+            listClientesData.add(new Cliente("11232311A", "Pepe Lopez", "Calle de arriba", "Vicar", "04720"));
+            listClientesData.add(new Cliente("11232999B", "Andrea Perez", "Calle de en medio", "Vicar", "04720"));
+            listClientesData.add(new Cliente("11456711C", "Alex Romero", "Calle de abajo", "Vicar", "04720"));
+            // metemos vehiculos de prueba
+            listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "1111BBB", "Audi", "A3", 0));
+            listVehiculosData.add(new Familiar(0, true, 0, Enumerados.TipoCombustible.DIESEL, "2222BBB", "Citroen", "C3", 0));
+            // metemos alquileres de prueba
+            listAlquileresData.add(new Alquiler(listClientesData.get(0), listVehiculosData.get(0)));
+            */
+        try {
+            db2array();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
         listClientes.setItems(listClientesData);
         listVehiculos.setItems(listVehiculosData);
