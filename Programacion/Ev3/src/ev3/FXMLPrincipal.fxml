@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="706.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ev3.FXMLPrincipalController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem disable="true" mnemonicParsing="false" text="Cargar" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Guardar" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#acercade" text="A cerca de" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="39.0" prefHeight="601.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+        <tabs>
+          <Tab text="Inicio">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="516.0" prefWidth="805.0">
+                     <children>
+                        <ListView id="listClientes" fx:id="listProfesores" layoutY="-3.0" onMouseClicked="#loadProfesores" prefHeight="625.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-3.0" />
+                        <Label layoutX="208.0" layoutY="20.0" prefHeight="27.0" prefWidth="74.0" text="NIF:" />
+                        <Label layoutX="208.0" layoutY="74.0" prefHeight="27.0" prefWidth="97.0" text="Nombre:" />
+                        <Label layoutX="208.0" layoutY="126.0" prefHeight="27.0" prefWidth="107.0" text="Teléfono:" />
+                        <Label layoutX="208.0" layoutY="181.0" prefHeight="27.0" prefWidth="83.0" text="Dirección:" />
+                        <Label layoutX="211.0" layoutY="240.0" prefHeight="27.0" prefWidth="101.0" text="Funcionario:" />
+                        <TextField id="txtNif" fx:id="txtProfesoresNif" editable="false" layoutX="342.0" layoutY="16.0" prefHeight="39.0" prefWidth="217.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="246.0" />
+                        <TextField id="txtNombre" fx:id="txtProfesoresNombre" editable="false" layoutX="342.0" layoutY="68.0" prefHeight="39.0" prefWidth="447.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtProfesoresTelefono" editable="false" layoutX="343.0" layoutY="120.0" prefHeight="39.0" prefWidth="446.0" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtProfesoresDireccion" editable="false" layoutX="343.0" layoutY="175.0" prefHeight="39.0" prefWidth="446.0" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="16.0" />
+                        <CheckBox fx:id="chkProfesoresMayor55" disable="true" layoutX="343.0" layoutY="305.0" mnemonicParsing="false" text="Mayor55" />
+                        <RadioButton fx:id="radProfesoresCarrera" disable="true" layoutX="343.0" layoutY="240.0" mnemonicParsing="false" text="Carrera" />
+                        <RadioButton fx:id="radProfesoresInterino" disable="true" layoutX="454.0" layoutY="240.0" mnemonicParsing="false" text="Interino" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Añadir Profesor">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="516.0" prefWidth="805.0">
+                     <children>
+                        <Label layoutX="208.0" layoutY="20.0" prefHeight="27.0" prefWidth="74.0" text="NIF:" />
+                        <Label layoutX="208.0" layoutY="74.0" prefHeight="27.0" prefWidth="97.0" text="Nombre:" />
+                        <Label layoutX="208.0" layoutY="126.0" prefHeight="27.0" prefWidth="107.0" text="Teléfono:" />
+                        <Label layoutX="208.0" layoutY="181.0" prefHeight="27.0" prefWidth="83.0" text="Dirección:" />
+                        <Label layoutX="211.0" layoutY="240.0" prefHeight="27.0" prefWidth="101.0" text="Funcionario:" />
+                        <TextField id="txtNif" fx:id="txtAnadirNif" layoutX="342.0" layoutY="16.0" prefHeight="39.0" prefWidth="217.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="246.0" />
+                        <TextField id="txtNombre" fx:id="txtAnadirNombre" layoutX="342.0" layoutY="68.0" prefHeight="39.0" prefWidth="447.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtDireccion" fx:id="txtAnadirTelefono" layoutX="343.0" layoutY="120.0" prefHeight="39.0" prefWidth="446.0" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="16.0" />
+                        <TextField id="txtLocalidad" fx:id="txtAnadirDireccion" layoutX="343.0" layoutY="175.0" prefHeight="39.0" prefWidth="446.0" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="16.0" />
+                        <Button layoutX="208.0" layoutY="508.0" mnemonicParsing="false" onAction="#anadirProfesor" prefHeight="73.0" prefWidth="583.0" text="Añadir" />
+                        <CheckBox fx:id="chkAnadirMayor55" layoutX="343.0" layoutY="305.0" mnemonicParsing="false" text="Mayor55" />
+                        <RadioButton fx:id="radAnadirCarrera" layoutX="343.0" layoutY="240.0" mnemonicParsing="false" text="Carrera" />
+                        <RadioButton fx:id="radAnadirInterino" layoutX="454.0" layoutY="240.0" mnemonicParsing="false" text="Interino" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
